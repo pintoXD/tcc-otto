@@ -1,0 +1,268 @@
+\chapter{Resultados}
+\label{chap:resultados}
+
+
+\section{Produção}
+
+\subsection{Lista de Materiais}
+
+Tendo sido realizado todo o desenvolvimento da placa, foi criado a \textit{bill of materials - BOM} (lista de materiais) do hardware final. Nessa lista, para cada componente, foi descrito a quantidade utilizada, seu preço unitário e o valor resultante para a quantidade necessária desse componente. À partir desses valores, é possível inferir qual o custo total de aquisição dos componentes necessários para a fabricação de uma unidade do hardware proposto. 
+
+Visando otimizar esse custo foi tomado como principal distribuidor de componentes eletrônicos a empresa LCSC Electronics, por conseguir oferecer os menores valores dentre os principais distribuidores de componentes eletrônicos do mercado. 
+
+Assim, para a maioria dos componentes eletrônicos do hardware proposto foi possível encontrar uma opção nesse distribuidor. Dessa forma, o custo total da lista de materiais para a produção de determinadas unidades é o que segue:
+
+	\begin{table}[!h]
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:custos_fabricacao} Custo de materiais por unidades}%
+	\IBGEtab{}{%
+		\begin{tabular}{cccc}
+			\toprule
+			Quantidade & Custo de Materiais  \\
+			\midrule \midrule
+			50 &  US\$ 751,52  \\
+			100 &  US\$ 928,38 \\
+			1000 & US\$ 8.564,10  \\
+			\bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{esta é uma nota, que diz que os dados são baseados na
+% 		regressão linear.}%
+% 	\Nota[Anotações]{uma anotação adicional, seguida de várias outras.}%
+    }
+    \end{table}
+
+
+
+
+
+\subsection{Otimização de lista de materiais}
+
+Para alguns componentes foram feitas recomendações tanto para quando da ocorrência da dificuldade de encontrar itens com os mesmos parâmetros nos distribuidores, quanto para necessidade de uma otimização do custo total da lista de materiais.
+
+Os componentes D700 e D701 podem ser substituídos por equivalentes desde que as seguintes especificações sejam mantidas:
+    \begin{itemize}
+        \item Diâmetro da lente de 5mm;
+        \item Montagem PTH;
+        \item Tensão de operação de mínimo 1,8 V;
+        \item Corrente de operação de no máximo 40 mA.
+    \end{itemize}
+    
+  Os resistores R600, R601 e R602, por sua vez, atuam como resistores de \textit{pull-up} na comunicação com o cartão microSD. Devido isso, caso seja necessário, podem ser substituídos por resistores equivalentes com resistência entre 3,3 k$\Omega$ e 10k$\Omega$, potência igual ou superior a 1/16 W e encapsulamento SMD 0805.
+    
+ Há também a possibilidade de substituição do fusível rearmável F300 por um componente com o mesmo encapsulamento SMD 1206, corrente de \textit{trip} de 750 mA e tensão máxima igual ou superior a 6,5 V.
+    
+Por fim há o suporte para pilhas AA, que pode ser substituído por suportes semelhantes desde que mantenha as dimensões aproximadas de 53,34 mm X 50,80 mm, conecte até 4 pilhas AA em série e possua fios de que permitam conexão com o hardware proposto.
+
+\subsection{Fabricação, montagem e custo unitário}
+
+Um levantamento dos custos de fabricação e montagem dos componentes do hardware foi realizado junto a empresa JLCPCB, especialista em fabricação de placas de circuito impresso e que também oferece serviços de montagem dessas placas. Optou-se por essa fabricante devido sua parceria com o distribuidor LCSC Electronics para o fornecimento dos componentes necessários caso seja necessário ser realizado o processo de montagem de componentes da placa de circuito impressa produzida.
+
+O processo de levantamento de custos com essa fabricante se deu pela disponibilização dos arquivos \textit{gerber} e lista de materiais do hardware projetado em sua plataforma digital e foram informados alguns parâmetros como a espessura da placa, material de fabricação e tipo de solda a ser usada. Em seguida, após alguns ajustes finais do processo de montagem de componentes, foi criado um orçamento para ambos os processos. Foram então levantados os valores de custo desses processos para as quantidades de 50, 100 e 1000 unidades, sendo obtidos os seguintes resultados:
+
+	\begin{table}[!h]
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:custos_fabricacao} Custos de fabricação e montagem JLCPCB}%
+	\IBGEtab{}{%
+		\begin{tabular}{cccc}
+			\toprule
+			Quantidade & Fabricação & Montagem & Total \\
+			\midrule \midrule
+			50 &  US\$ 22,4 & US\$ 64,47 & US\$ 86,87 \\
+			100 &  US\$ 34,4 & US\$ 96,97 & US\$ 131,37 \\
+			1000 & US\$ 249,70 & US\$ 447,92 & US\$ 667,62 \\
+			\bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{esta é uma nota, que diz que os dados são baseados na
+% 		regressão linear.}%
+% 	\Nota[Anotações]{uma anotação adicional, seguida de várias outras.}%
+    }
+    \end{table}
+\newpage
+Tendo sido levantado esses custos de fabricação e montagem, foi feito o custo total somando esses custos ao valor da lista de materiais para cada quantidade desejada, o que tornou possível estabelecer o custo unitário do hardware das placas fabricadas e montadas:
+
+
+	\begin{table}[!h]
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:custos_fabricacao} Custos de total unitário}%
+	\IBGEtab{}{%
+		\begin{tabular}{cccc}
+			\toprule
+			Quantidade & Custo Total & Custo Unitário  \\
+			\midrule \midrule
+			50 &  US\$ 838,39 & US\$ 16,77 \\
+			100 &  US\$ 1059,75 & US\$ 10,60  \\
+			1000 & US\$ 9231,72 & US\$ 9,23  \\
+			\bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{esta é uma nota, que diz que os dados são baseados na
+% 		regressão linear.}%
+% 	\Nota[Anotações]{uma anotação adicional, seguida de várias outras.}%
+    }
+    \end{table}
+
+
+\section{Energia}
+
+A autonomia do uso da bateria no hardware proposto depende não só das funcionalidades de gerenciamento do consumo de energia oferecidas do módulo microcontrolador, como também de estratégias firmware que visem diminuir o consumo quando o hardware não estiver sendo totalmente utilizado. 
+
+\subsection{Consumo dos componentes}
+
+\subsubsection{Módulo Microcontrolador} 
+
+De acordo com sua folha de dados, a fabricante recomenda que haja um suprimento mínimo de 500mA de corrente para o funcionamento do módulo. Contudo isso é necessário quando há o pleno funcionamento de todos os seus periféricos e dos rádios Wi-Fi e Bluetooth, o que não será necessário para o hardware proposto. Junto a isso há a possibilidade de se escolher por meio do firmware um dos dois modos de operação de baixo consumo disponíveis, \textit{light-sleep} ou \textit{deep-sleep}. 
+
+No modo de operação \textit{light-sleep} o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa. Nesse modo, de acordo com a folha de dados da fabricante é possível atingir um consumo de 240 $\mu$A.
+% , contudo devido a características inerentes a construção do módulo e de  acordo com testes realizados pela fabricante, foi possível atingir um consumo médio de 1,3 mA em um contexto no o módulo alternava a cada 2 segundos entre esse modo e o modo de operação ativo. 
+
+Para o modo \textit{deep-sleep} a CPU e a maioria dos periféricos do hardware são desligados, permanecendo ativos somente seu co-processador de baixíssima potência (\textit{Ultra-Low-Power} - ULP), periféricos e memória RTC. Esse estado se mantém enquanto não houver um evento, à partir das fontes determinadas em documentação, que leve ao co-processador a despertar a CPU e seus demais periféricos. Dessa forma, segundo sua folha de dados, o consumo médio nesse modo é de 8$\mu$A.
+
+\subsubsection{Sensor de Temperatura e umidade}
+ 
+ Segundo a folha de dados desse componente, seu consumo médio é de 1,3 $\mu$A para leituras constantes, com um pico de 7,2 mA mas somente quando a função de auto aquecimento é acionada. Contudo, caso nenhuma leitura esteja sendo feita, o sensor consome apenas 100 nA.
+
+\subsubsection{Cartão microSD}  
+
+As operações de leitura e escrita de dados em um cartão microSD consomem em média 100mA cada uma e quando nenhuma dessas operações estiver sendo realizada, é necessário o consumo de pelo menos 500$\mu$A para manter o cartão em estado de espera para realização de novas operações. 
+
+% Para auxiliar na redução desse consumo energético, o componente Q600 foi introduzido na linha de alimentação do suporte de leitura de cartões microSD. Esse componente é um transistor MOSFET de canal P que foi escolhido para operar nos modos de corte e saturação de forma que seja possível controlar quando o cartão deverá ser alimentado, eliminando assim o seu consumo em modo de espera restando assim somente o consumo quando da realização de operações de leitura e escrita.
+
+\subsubsection{Interface de usuário}  
+
+Para mensurar o consumo energético da interface de usuário é necessário analisar seus componentes individualmente. Os LEDs que fazem parte desse circuito possuem um consumo típico de 30mA cada, enquanto os botões funcionam como um fio condutor quando pressionados não gerando assim um considerável consumo de corrente. 
+
+
+\subsection{Consumo total}
+
+Com base nos consumos levantados nas seções anteriores, pode-se inferir que o consumo total é o que segue:
+
+	\begin{table}[!h]
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:custos_fabricacao} Consumo total modo \textit{light-sleep}}%
+	\IBGEtab{}{%
+		\begin{tabular}{cc}
+			\toprule
+			Circuito & Consumo \\
+			\midrule \midrule
+			Controle  &  0,24 mA \\
+			Sensores  &  0,0013 mA  \\
+			MicroSD &   100 mA\\
+			Interface de Usuário & 60 mA\\
+			\bottomrule
+			\textbf{Total} & 160,24 mA\\
+		    \bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{esta é uma nota, que diz que os dados são baseados na
+% 		regressão linear.}%
+% 	\Nota[Anotações]{uma anotação adicional, seguida de várias outras.}%
+    }
+    \end{table}
+
+\newpage
+\subsection{Autonomia total}
+
+Tendo em vista o consumo total do hardware, para um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, é possível manter o hardware em operação por um período de 15h 36min. 
+
+
+\section{Arquivos de saída}
+
+Foram criados três grupos de arquivos finais do projeto. São eles: 
+
+\begin{itemize}
+    \item Arquivos de Fabricação
+    Grupo formado pelos arquivos gerber e lista de materiais da placa desenvolvida.
+    
+    
+    
+    \item Arquivos de Montagem
+    
+    Grupo formado pelos arquivos Pick and Place e documentos em PDF das silkscreens da placa.
+    
+    
+    \item Arquivos de Documentação
+    
+    
+    Grupo formado pela lista de materiais, esquemáticos eletrônicos, design PCB e visualização 3D compilados em um único documento PDF.
+    
+
+\end{itemize}
+
+
+
+
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% \section{Resultados do Experimento A}
+% \label{sec:resultados-do-experimento-a}
+
+% Procure deixar as figuras dos resultados o maior possível preenchendo a largura do texto do documento que possui $16~cm$.
+
+% \begin{figure}[h!]
+%         \captionsetup{width=16cm}
+% 		\Caption{\label{fig:tensaoimpedanciahumana} Gráfico de tensão considerando a impedância humana}
+% 		%\centering
+% 		\UFCfig{}{
+% 			\fbox{\includegraphics[width=16cm]{figuras/tensaoimpedanciahumana}}
+% 		}{
+% 			\Fonte{elaborado pelo autor (2016).}
+% 		}	
+% \end{figure}
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% \begin{figure}[h!]
+% 	\captionsetup{width=16cm}
+% 	\Caption{\label{fig-grafico-1}Produção anual das dissertações de mestrado e teses de doutorado entre os anos de 1990 e 2008}		
+% 	\IBGEtab{}{
+% 		\fbox{\includegraphics[width=16cm]{figuras/figura-3}}
+% 	}{
+% 	\Fonte{elaborado pelo autor (2016).}
+% }
+% \end{figure}
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% \section{Resultados do Experimento B}
+% \label{sec:resultados-do-experimento-b}
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto ..
+
+% \begin{table}[h!]	
+% 	%\centering
+% 	\captionsetup{width=11.3cm}%ATENÇÃO: Ajuste a largura do título
+% 	\Caption{\label{tab:notas} Notas dos participantes nas avaliações A, B e C}	
+% 	\IBGEtab{}{
+% 		\begin{tabular}{crrr}
+% 			\toprule
+% 			Identificação dos participantes & Avaliação A & Avaliação B &                        Avaliação C \\
+% 			\midrule \midrule
+% 			Participante 1 & 7 & 9 & 10\\
+% 			Participante 2 & 8 & 2 & 1\\
+% 			Participante 3 & 5 & 10 & 6 \\
+% 			Participante 4 & 3 & 1 & 4\\
+% 			Participante 5 & 2 & 4 & 1\\
+% 			Participante 6 & 0 & 7 & 2\\
+% 			\bottomrule
+% 		\end{tabular}
+% 	}{
+% 	\Fonte{elaborado pelo autor (2016).}
+% }
+% \end{table}
+
+%  Texto texto Referenciando a \autoref{tab:notas}  texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+% Texto texto  Referenciando a \autoref{tab:notas}  texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
