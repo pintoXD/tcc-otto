@@ -111,50 +111,35 @@ Tendo sido levantado esses custos de fabricação e montagem, foi feito o custo 
 
 A autonomia do uso da bateria no hardware proposto depende não só das funcionalidades de gerenciamento do consumo de energia oferecidas do módulo microcontrolador, como também de estratégias firmware que visem diminuir o consumo quando o hardware não estiver sendo totalmente utilizado. 
 
-\subsection{Consumo dos componentes}
+\subsection{Consumo dos hardware}
 
-\subsubsection{Módulo Microcontrolador} 
+Para mensurar o consumo energético total do hardware, foi necessário analisar seus componentes individualmente, sendo realizado uma análise por cada circuito que compõe o hardware. Tomou-se a interface de usuário como primeiro circuito a se analisar e foi notado que seus LEDs possuem um consumo típico de 30mA cada, enquanto os botões, por funcionarem como um fio condutor quando pressionados, não geram um consumo de corrente considerável. 
 
-De acordo com sua folha de dados, a fabricante recomenda que haja um suprimento mínimo de 500mA de corrente para o funcionamento do módulo. Contudo isso é necessário quando há o pleno funcionamento de todos os seus periféricos e dos rádios Wi-Fi e Bluetooth, o que não será necessário para o hardware proposto. Junto a isso há a possibilidade de se escolher por meio do firmware um dos dois modos de operação de baixo consumo disponíveis, \textit{light-sleep} ou \textit{deep-sleep}. 
+Em seguida analisou-se os circuitos dos sensores. Para o sensor de umidade e temperatura, segundo a folha de dados desse componente, seu consumo médio é de 1,3 $\mu$A para leituras constantes, com um pico de 7,2 mA somente quando a função de auto aquecimento é acionada. Contudo, caso nenhuma leitura esteja sendo feita, o sensor consome apenas 100 nA. Já o sensor de luminosidade não consome corrente por ser um componente passivo de resistência variável, deixando apenas que ela flua através de si.
 
-No modo de operação \textit{light-sleep} o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa. Nesse modo, de acordo com a folha de dados da fabricante é possível atingir um consumo de 240 $\mu$A.
-% , contudo devido a características inerentes a construção do módulo e de  acordo com testes realizados pela fabricante, foi possível atingir um consumo médio de 1,3 mA em um contexto no o módulo alternava a cada 2 segundos entre esse modo e o modo de operação ativo. 
-
-Para o modo \textit{deep-sleep} a CPU e a maioria dos periféricos do hardware são desligados, permanecendo ativos somente seu co-processador de baixíssima potência (\textit{Ultra-Low-Power} - ULP), periféricos e memória RTC. Esse estado se mantém enquanto não houver um evento, à partir das fontes determinadas em documentação, que leve ao co-processador a despertar a CPU e seus demais periféricos. Dessa forma, segundo sua folha de dados, o consumo médio nesse modo é de 8$\mu$A.
-
-\subsubsection{Sensor de Temperatura e umidade}
- 
- Segundo a folha de dados desse componente, seu consumo médio é de 1,3 $\mu$A para leituras constantes, com um pico de 7,2 mA mas somente quando a função de auto aquecimento é acionada. Contudo, caso nenhuma leitura esteja sendo feita, o sensor consome apenas 100 nA.
-
-\subsubsection{Cartão microSD}  
-
-As operações de leitura e escrita de dados em um cartão microSD consomem em média 100mA cada uma e quando nenhuma dessas operações estiver sendo realizada, é necessário o consumo de pelo menos 500$\mu$A para manter o cartão em estado de espera para realização de novas operações. 
+No circuito do cartão microSD, o consumo depende das operações de leitura e escrita de dados. Essas operações consomem em média 100mA cada uma e quando nenhuma dessas operações estiver sendo realizada, é necessário o consumo de pelo menos 500$\mu$A para manter o cartão em estado de espera para realização de novas operações, o qual foi procurado eliminar utilizando o transistor Q600 que no configuração atual necessita de 1$\mu$A para operar.
 
 % Para auxiliar na redução desse consumo energético, o componente Q600 foi introduzido na linha de alimentação do suporte de leitura de cartões microSD. Esse componente é um transistor MOSFET de canal P que foi escolhido para operar nos modos de corte e saturação de forma que seja possível controlar quando o cartão deverá ser alimentado, eliminando assim o seu consumo em modo de espera restando assim somente o consumo quando da realização de operações de leitura e escrita.
+Para o circuito de controle foi necessário consultar a folha de dados do módulo microcontrolador, no qual a fabricante recomenda que haja um suprimento mínimo de 500mA de corrente para seu funcionamento, porém isso é necessário quando há o pleno funcionamento de todos os seus periféricos e dos rádios Wi-Fi e Bluetooth. Como o hardware proposto não fará uso de comunicação utilizando os rádios disponíveis, é possível configurar o módulo de forma a não usá-los e obter um consumo típico de 30 mA operando na frequência de 80 MHz. Junto a isso há ainda possibilidade de se escolher por meio de firmware um dos dois modos de operação de baixo consumo disponíveis, \textit{light-sleep} ou \textit{deep-sleep}. 
 
-\subsubsection{Interface de usuário}  
+Naquele, o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa. Nesse modo, de acordo com a folha de dados da fabricante é possível atingir um consumo de 240 $\mu$A.
+% , contudo devido a características inerentes a construção do módulo e de  acordo com testes realizados pela fabricante, foi possível atingir um consumo médio de 1,3 mA em um contexto no o módulo alternava a cada 2 segundos entre esse modo e o modo de operação ativo. 
+No modo \textit{deep-sleep} a CPU e a maioria dos periféricos do hardware são desligados, permanecendo ativos somente seu co-processador de baixíssima potência (\textit{Ultra-Low-Power} - ULP), periféricos e memória RTC. Esse estado se mantém enquanto não houver um evento, à partir das fontes determinadas em documentação, que leve ao co-processador a despertar a CPU e seus demais periféricos. Dessa forma, segundo sua folha de dados, o consumo médio nesse modo é de 8$\mu$A.
 
-Para mensurar o consumo energético da interface de usuário é necessário analisar seus componentes individualmente. Os LEDs que fazem parte desse circuito possuem um consumo típico de 30mA cada, enquanto os botões funcionam como um fio condutor quando pressionados não gerando assim um considerável consumo de corrente. 
-
-
-\subsection{Consumo total}
-
-Com base nos consumos levantados nas seções anteriores, pode-se inferir que o consumo total é o que segue:
+Em um cenário testado pela fabricante, no qual o módulo microcontrolador alternou entre uma operação a 80 MHz sem uso dos rádios e uma operação no modo \textit{light-sleep} a cada dois segundos, foi obtido um consumo médio de 1,3 mA. Com base nisso e nos demais dados levantados, o consumo total do hardware é de 161,3 mA e pode ser observado em detalhes abaixo.
 
 	\begin{table}[!h]
 	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
-	\Caption{\label{tab:custos_fabricacao} Consumo total modo \textit{light-sleep}}%
+	\Caption{\label{tab:consumos_circuitos} Consumo total por circuito}%
 	\IBGEtab{}{%
 		\begin{tabular}{cc}
 			\toprule
 			Circuito & Consumo \\
 			\midrule \midrule
-			Controle  &  0,24 mA \\
+			Controle  &  1,3  mA \\
 			Sensores  &  0,0013 mA  \\
 			MicroSD &   100 mA\\
 			Interface de Usuário & 60 mA\\
-			\bottomrule
-			\textbf{Total} & 160,24 mA\\
 		    \bottomrule
 		\end{tabular}%
 	}{%
@@ -168,7 +153,9 @@ Com base nos consumos levantados nas seções anteriores, pode-se inferir que o 
 \newpage
 \subsection{Autonomia total}
 
-Tendo em vista o consumo total do hardware, para um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, é possível manter o hardware em operação por um período de 15h 36min. 
+Tendo em vista o consumo total do hardware, para um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, é possível manter o hardware em operação por um período de 15h 30min, em um cenário teórico em o hardware realize e persista leituras a cada dois segundos. Essa autonomia pode ser otimizada por meio de estratégias adotadas no firmware a ser desenvolvido. 
+
+Como pode se notado nos consumos descritos na tabela \ref{tab:consumos_circuitos}, o circuito que possui o maior consumo é o realização das operações com o cartão microSD, sendo responsável pelo consumo de aproximadamente 62\% da totalidade de corrente consumida pelo hardware, sendo seguido pela ativação dos LEDs e operação do módulo microcontrolador. 
 
 
 \section{Arquivos de saída}
