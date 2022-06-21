@@ -1,16 +1,9 @@
 \chapter{Projeto do datalogger}
 \label{chap:metodologia}
 
+% \section{Motivação}
 
-\section{Escolha entre DAQ e Datalogger}
-
-
-
-
-EXPLICAR O PORQUÊ DA ESCOLHA DE UM DATALOGGER AO INVÉS DO DAQ
-
-
-
+% A escolha entre uma dessas soluções, deve levar em conta o tipo de aplicação e o nível de criticidade dos dados levantados. Para levantamento de dados de temperatura de salas de armazenamento de vacinas, ou da umidade relativa do ar em uma cultura agrícola e afins, a escolha de um \textit{Datalogger} se mostra ideal. 
 
 \section{Escopo de projeto}
 
@@ -35,7 +28,6 @@ Realizando a análise do escopo definido, foram então levantadas as especifica�
         \item Possuir a capacidade de ler a umidade relativa do ambiente;
         \item Possuir a capacidade de ler o nível de luminosidade do ambiente;
         \item Possuir alternativa de alimentação direta ou via bateria;
-        \item Ter uma autonomia de dias ao usar bateria;
         \item Leitura de sensores via interfaces I2C, SPI e/ou UART;
         \item Formatação dos dados lidos dos sensores para auxiliar no envio e/ou coleta;
         \item Persistir os dados em um cartão SD para a coleta manual dos dados;
@@ -124,8 +116,7 @@ Assim, para cada objeto do diagrama foram levantado quais tipos de componentes f
 
     \begin{itemize}
         \item LEDs multicoloridos;
-        \item Botões tácteis;
-        \item Alarme sonoro (\textit{buzzer}).
+        \item Botões tácteis.
     \end{itemize}
 %  \item Unidade de interface de comunicação USB;
 %     \begin{itemize}
@@ -350,7 +341,7 @@ O sensor de temperatura e umidade HDC1080 por fazer sua comunicação com o mód
 
 Para o circuito de comunicação com o cartão microSD foi necessário conectar cada uma de suas linhas de dados a resistores \textit{pull-up} de 10 k$\Omega$ de acordo com recomendações da fabricante do módulo microcontrolador, a fim de se evitar que essas linhas assumam um estado indefinido. 
 
-Devido ao grande consumo de corrente, 100 mA em média mas podendo ter picos de 200 mA, foi necessário adicionar um \textbf{transistor MOSFET de baixo quesciente na linha de alimentação do cartão microSD para que, quando não estiver sendo utilizado para gravação ou leitura de dados, permaneça desligado e não haja desperdício de energia.}
+Devido ao grande consumo de corrente, 100 mA em média mas podendo ter picos de 200 mA, foi necessário adicionar um transistor MOSFET de baixo quesciente na linha de alimentação do cartão microSD para que, quando não estiver sendo utilizado para gravação ou leitura de dados, permaneça desligado e não haja desperdício de energia.
 
 \subsubsection{Circuito de controle}
 

@@ -1,8 +1,11 @@
 \chapter{Resultados}
 \label{chap:resultados}
 
+Nesse capítulo serão apresentados os custos de produção para o hardware projetado, autonomia alcançada quando do uso de baterias e estratégias de uso dos recursos disponíveis para se otimizar a autonomia atual do projeto.
 
 \section{Produção}
+
+Foi realizado o levantamento dos custos, desde listas de materiais a custos de importação do hardware projetado, para algumas determinadas quantidades a fim de determinar seu preço unitário final para o consumidor.
 
 \subsection{Lista de Materiais}
 
@@ -107,38 +110,113 @@ Tendo sido levantado esses custos de fabricação e montagem, foi feito o custo 
     \end{table}
 
 
+\subsection{Custos de importação e valor unitário}
+
+Devido a necessidade da fabricação no exterior, o processo de importação do hardware produzido acarreta em alguns custos para nacionalização do produto, sendo o primeiro deles o valor do transporte até o território brasileiro. Segundo ferramente de solicitação de fabricação da JLCPCB, o custo para o hardware projetado são os que seguem:
+
+	\begin{table}[!h]
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:custos_fabricacao} Custos de transporte para o Brasil}%
+	\IBGEtab{}{%
+		\begin{tabular}{cc}
+			\toprule
+			Quantidade & Valor  \\
+			\midrule \midrule
+			50 &  US\$ 80,36   \\
+			100 &  US\$ 110,52 \\
+			1000 & US\$ 524,49 \\
+			\bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+	}
+	\end{table}
+
+
+À partir dos custos de transporte é possível fazer o cálculo das tarifas alfandegárias para a nacionalização do produto importado. Assim, para fins de auxílio nesse levantamento, foi tomado como destino o estado Ceará para cálculo da alíquota do imposto sobre circulação de mercadorias e serviços - ICMS, e taxa de câmbio de R\$ 5,13 em relação ao dólar estadunidense. Vale ressaltar ainda que devido a decreto do Ministério da Economia do Brasil, a taxa de importação para equipamentos de informática e telecomunicações foi zerada e assim deve se manter até 31 de dezembro de 2025. Dessa forma, os custos alfandegários, total e final são discriminados abaixo, com todos os valores estando em reais:
+
+
+	\begin{table}[!h]
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:custos_fabricacao} Custos de importação para o Brasil}
+	\IBGEtab{}{%
+		\begin{tabular}{ccccccccc}
+			\toprule
+			Quantidade & Valor & Frete & IPI & PIS & COFINS & ICMS & Total & Valor Unitário  \\
+			\midrule \midrule
+            50   & 4.302,03  & 412,35   & 61,29  & 99,00    & 454,94   & 1.169,91  & 6.499,52  & 129,99 \\
+            100  & 5.437,90  & 567,11   & 78,07  & 126,11   & 579,48   & 1.490,19  & 8.278,85  & 82,79  \\
+            1000 & 47.370,72 & 2.691,32 & 650,81 & 1.051,30 & 4.830,99 & 12.423,32 & 69.018,46 & 69,02 \\
+			\bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+	}
+	\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Energia}
 
 A autonomia do uso da bateria no hardware proposto depende não só das funcionalidades de gerenciamento do consumo de energia oferecidas do módulo microcontrolador, como também de estratégias firmware que visem diminuir o consumo quando o hardware não estiver sendo totalmente utilizado. 
 
-\subsection{Consumo dos hardware}
+\subsection{Consumo energético dos circuitos}
 
 Para mensurar o consumo energético total do hardware, foi necessário analisar seus componentes individualmente, sendo realizado uma análise por cada circuito que compõe o hardware. Tomou-se a interface de usuário como primeiro circuito a se analisar e foi notado que seus LEDs possuem um consumo típico de 30mA cada, enquanto os botões, por funcionarem como um fio condutor quando pressionados, não geram um consumo de corrente considerável. 
 
 Em seguida analisou-se os circuitos dos sensores. Para o sensor de umidade e temperatura, segundo a folha de dados desse componente, seu consumo médio é de 1,3 $\mu$A para leituras constantes, com um pico de 7,2 mA somente quando a função de auto aquecimento é acionada. Contudo, caso nenhuma leitura esteja sendo feita, o sensor consome apenas 100 nA. Já o sensor de luminosidade não consome corrente por ser um componente passivo de resistência variável, deixando apenas que ela flua através de si.
 
-No circuito do cartão microSD, o consumo depende das operações de leitura e escrita de dados. Essas operações consomem em média 100mA cada uma e quando nenhuma dessas operações estiver sendo realizada, é necessário o consumo de pelo menos 500$\mu$A para manter o cartão em estado de espera para realização de novas operações, o qual foi procurado eliminar utilizando o transistor Q600 que no configuração atual necessita de 1$\mu$A para operar.
+No circuito do cartão microSD, o consumo depende das operações de leitura e escrita de dados. Essas operações consomem um máximo de 100mA cada uma quando o cartão estiver operando no modo padrão de velocidade, no qual é possível atingir uma taxa de transferência de até 12.5 MB/s. É também necessário o consumo no máximo 100 mA para manter o cartão em estado de espera para realização de novas operações, o qual foi procurado eliminar ao oferecer a opção de desligar completamente o cartão microSD utilizando o transistor Q600 que no configuração atual funciona como uma chave na linha de alimentação do cartão.
 
+Contudo se essa funcionalidade for utilizada e quando houver a necessidade de realizar novas operações, o processo de religamento do cartão microSD além do tempo mínimo de 250 milissegundos, é necessário também um consumo de no máximo 115 mA para que o cartão entre em estado de operação. 
 % Para auxiliar na redução desse consumo energético, o componente Q600 foi introduzido na linha de alimentação do suporte de leitura de cartões microSD. Esse componente é um transistor MOSFET de canal P que foi escolhido para operar nos modos de corte e saturação de forma que seja possível controlar quando o cartão deverá ser alimentado, eliminando assim o seu consumo em modo de espera restando assim somente o consumo quando da realização de operações de leitura e escrita.
+
 Para o circuito de controle foi necessário consultar a folha de dados do módulo microcontrolador, no qual a fabricante recomenda que haja um suprimento mínimo de 500mA de corrente para seu funcionamento, porém isso é necessário quando há o pleno funcionamento de todos os seus periféricos e dos rádios Wi-Fi e Bluetooth. Como o hardware proposto não fará uso de comunicação utilizando os rádios disponíveis, é possível configurar o módulo de forma a não usá-los e obter um consumo típico de 30 mA operando na frequência de 80 MHz. Junto a isso há ainda possibilidade de se escolher por meio de firmware um dos dois modos de operação de baixo consumo disponíveis, \textit{light-sleep} ou \textit{deep-sleep}. 
 
-Naquele, o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa. Nesse modo, de acordo com a folha de dados da fabricante é possível atingir um consumo de 240 $\mu$A.
+Naquele, o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa. Nesse modo, de acordo com a folha de dados da fabricante é possível atingir um consumo de 240 $\mu$A. 
 % , contudo devido a características inerentes a construção do módulo e de  acordo com testes realizados pela fabricante, foi possível atingir um consumo médio de 1,3 mA em um contexto no o módulo alternava a cada 2 segundos entre esse modo e o modo de operação ativo. 
+
 No modo \textit{deep-sleep} a CPU e a maioria dos periféricos do hardware são desligados, permanecendo ativos somente seu co-processador de baixíssima potência (\textit{Ultra-Low-Power} - ULP), periféricos e memória RTC. Esse estado se mantém enquanto não houver um evento, à partir das fontes determinadas em documentação, que leve ao co-processador a despertar a CPU e seus demais periféricos. Dessa forma, segundo sua folha de dados, o consumo médio nesse modo é de 8$\mu$A.
 
-Em um cenário testado pela fabricante, no qual o módulo microcontrolador alternou entre uma operação a 80 MHz sem uso dos rádios e uma operação no modo \textit{light-sleep} a cada dois segundos, foi obtido um consumo médio de 1,3 mA. Com base nisso e nos demais dados levantados, o consumo total do hardware é de 161,3 mA e pode ser observado em detalhes abaixo.
+Assim, com base nos dados levantados, o consumo típico dos circuitos do hardware proposto, em miliampères, são resumidamente:
 
 	\begin{table}[!h]
 	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
-	\Caption{\label{tab:consumos_circuitos} Consumo total por circuito}%
+	\Caption{\label{tab:consumos_circuitos} Consumo típico por circuito}%
 	\IBGEtab{}{%
 		\begin{tabular}{cc}
 			\toprule
 			Circuito & Consumo \\
 			\midrule \midrule
-			Controle  &  1,3  mA \\
+			Controle  &  30  mA \\
 			Sensores  &  0,0013 mA  \\
-			MicroSD &   100 mA\\
+			MicroSD   &   100 mA\\
 			Interface de Usuário & 60 mA\\
 		    \bottomrule
 		\end{tabular}%
@@ -150,36 +228,42 @@ Em um cenário testado pela fabricante, no qual o módulo microcontrolador alter
     }
     \end{table}
 
-\newpage
-\subsection{Autonomia total}
+% \newpage
+\subsection{Autonomia e estratégias de otimização}
 
-Tendo em vista o consumo total do hardware, para um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, é possível manter o hardware em operação por um período de 15h 30min, em um cenário teórico em o hardware realize e persista leituras a cada dois segundos. Essa autonomia pode ser otimizada por meio de estratégias adotadas no firmware a ser desenvolvido. 
+% Em um cenário testado pela fabricante, no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante 9 milissegundos, foi obtido um consumo médio de 1,3 mA.
+Com base nos consumos descritos na tabela \ref{tab:consumos_circuitos}, o consumo total do hardware proposto é de aproximadamente 190 mA quando houver sendo feito uso constante de todas as suas funcionalidades, possui uma autonomia típica de 13 h 9 min quando a alimentação for realizada por um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, o que está aquém das especificações do projeto. Para otimizar esse tempo, é necessário a adoção de algumas estratégias quando do desenvolvimento do firmware para esse hardware.
 
-Como pode se notado nos consumos descritos na tabela \ref{tab:consumos_circuitos}, o circuito que possui o maior consumo é o realização das operações com o cartão microSD, sendo responsável pelo consumo de aproximadamente 62\% da totalidade de corrente consumida pelo hardware, sendo seguido pela ativação dos LEDs e operação do módulo microcontrolador. 
+Reduzir o tempo de utilização do cartão microSD por meio da diminuição do número de operações de escrita no cartão, deve ser uma das primeiras estratégias a serem consideradas e que pode ser realizada por meio da acumulação dos dados lidos dos sensores na memória flash do módulo microcontrolador em blocos de dados que seriam gravados no cartão microSD somente quando atingissem um tamanho pré-determinado. Essa estratégia pode ser otimizada com a utilização do transistor da linha de alimentação do cartão, que permite seu desligamento completo, eliminando assim o consumo em estado de espera durante o período que não houver operações de gravação de dados. 
+
+A operação do módulo microcontrolador durante maiores períodos de tempo nos modos de operação com baixo consumo energético disponíveis, também se mostra como possível estratégia para economia energética. Em um cenário apresentado pela fabricante  no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante nove milissegundos, foi obtido um consumo médio de 1,3 mA.
 
 
-\section{Arquivos de saída}
 
-Foram criados três grupos de arquivos finais do projeto. São eles: 
 
-\begin{itemize}
-    \item Arquivos de Fabricação
-    Grupo formado pelos arquivos gerber e lista de materiais da placa desenvolvida.
+
+
+
+% \section{Arquivos de saída}
+
+% \begin{itemize}
+%     \item Arquivos de Fabricação
+%     Grupo formado pelos arquivos gerber e lista de materiais da placa desenvolvida.
     
     
     
-    \item Arquivos de Montagem
+%     \item Arquivos de Montagem
     
-    Grupo formado pelos arquivos Pick and Place e documentos em PDF das silkscreens da placa.
-    
-    
-    \item Arquivos de Documentação
+%     Grupo formado pelos arquivos Pick and Place e documentos em PDF das silkscreens da placa.
     
     
-    Grupo formado pela lista de materiais, esquemáticos eletrônicos, design PCB e visualização 3D compilados em um único documento PDF.
+%     \item Arquivos de Documentação
+    
+    
+%     Grupo formado pela lista de materiais, esquemáticos eletrônicos, design PCB e visualização 3D compilados em um único documento PDF.
     
 
-\end{itemize}
+% \end{itemize}
 
 
 
