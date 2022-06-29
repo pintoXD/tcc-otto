@@ -23,9 +23,9 @@ Assim, para a maioria dos componentes eletrônicos do hardware proposto foi poss
 			\toprule
 			Quantidade & Custo de Materiais  \\
 			\midrule \midrule
-			50 &  US\$ 751,52  \\
-			100 &  US\$ 928,38 \\
-			1000 & US\$ 8.564,10  \\
+			50 &  US\$ 502,60  \\
+			100 &  US\$ 938,41 \\
+			1000 & US\$ 8.736,80  \\
 			\bottomrule
 		\end{tabular}%
 	}{%
@@ -84,7 +84,7 @@ O processo de levantamento de custos com essa fabricante se deu pela disponibili
 % 	\Nota[Anotações]{uma anotação adicional, seguida de várias outras.}%
     }
     \end{table}
-\newpage
+% \newpage
 Tendo sido levantado esses custos de fabricação e montagem, foi feito o custo total somando esses custos ao valor da lista de materiais para cada quantidade desejada, o que tornou possível estabelecer o custo unitário do hardware das placas fabricadas e montadas:
 
 
@@ -96,9 +96,9 @@ Tendo sido levantado esses custos de fabricação e montagem, foi feito o custo 
 			\toprule
 			Quantidade & Custo Total & Custo Unitário  \\
 			\midrule \midrule
-			50 &  US\$ 838,39 & US\$ 16,77 \\
-			100 &  US\$ 1059,75 & US\$ 10,60  \\
-			1000 & US\$ 9231,72 & US\$ 9,23  \\
+			50 &  US\$ 582,42 & US\$ 11,65 \\
+			100 &  US\$ 1048,93 & US\$ 10,49  \\
+			1000 & US\$ 9261,29 & US\$ 9,26  \\
 			\bottomrule
 		\end{tabular}%
 	}{%
@@ -137,16 +137,16 @@ Devido a necessidade da fabricação no exterior, o processo de importação do 
 
 
 	\begin{table}[!h]
-	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\captionsetup{width=10cm}%Deixe da mesma largura que a tabela
 	\Caption{\label{tab:custos_fabricacao} Custos de importação para o Brasil}
 	\IBGEtab{}{%
 		\begin{tabular}{ccccccccc}
 			\toprule
 			Quantidade & Valor & Frete & IPI & PIS & COFINS & ICMS & Total & Valor Unitário  \\
 			\midrule \midrule
-            50   & 4.302,03  & 412,35   & 61,29  & 99,00    & 454,94   & 1.169,91  & 6.499,52  & 129,99 \\
-            100  & 5.437,90  & 567,11   & 78,07  & 126,11   & 579,48   & 1.490,19  & 8.278,85  & 82,79  \\
-            1000 & 47.370,72 & 2.691,32 & 650,81 & 1.051,30 & 4.830,99 & 12.423,32 & 69.018,46 & 69,02 \\
+            50   & 2.576,22  & 412,35   & 38,85  & 62,76  & 288,40   & 741,64    & 4.120,22  & 82,40 \\
+            100  & 4.815,26  & 567,11   & 69,97  & 113,03 & 519,40   & 1.335,68  & 7.420,46  & 74,20 \\
+            1000 & 44.831,14 & 2.691,32 & 617,79 & 997,97 & 4.585,92 & 11.793,10 & 65.517,24 & 65,52\\
 			\bottomrule
 		\end{tabular}%
 	}{%
@@ -192,7 +192,7 @@ Para mensurar o consumo energético total do hardware, foi necessário analisar 
 
 Em seguida analisou-se os circuitos dos sensores. Para o sensor de umidade e temperatura, segundo a folha de dados desse componente, seu consumo médio é de 1,3 $\mu$A para leituras constantes, com um pico de 7,2 mA somente quando a função de auto aquecimento é acionada. Contudo, caso nenhuma leitura esteja sendo feita, o sensor consome apenas 100 nA. Já o sensor de luminosidade não consome corrente por ser um componente passivo de resistência variável, deixando apenas que ela flua através de si.
 
-No circuito do cartão microSD, o consumo depende das operações de leitura e escrita de dados. Essas operações consomem um máximo de 100mA cada uma quando o cartão estiver operando no modo padrão de velocidade, no qual é possível atingir uma taxa de transferência de até 12.5 MB/s. É também necessário o consumo no máximo 100 mA para manter o cartão em estado de espera para realização de novas operações, o qual foi procurado eliminar ao oferecer a opção de desligar completamente o cartão microSD utilizando o transistor Q600 que no configuração atual funciona como uma chave na linha de alimentação do cartão.
+No circuito do cartão microSD, o consumo depende das operações de leitura e escrita de dados. Essas operações consomem um máximo de 100mA cada quando o cartão estiver operando no modo padrão de velocidade, no qual é possível atingir uma taxa de transferência de até 12.5 MB/s \cite{sd3sd}. É também necessário o consumo de no máximo 1 mA para manter o cartão em estado de espera para realização de novas operações, o qual foi procurado eliminar ao oferecer a opção de desligar completamente o cartão microSD utilizando o transistor Q600 que no configuração atual funciona como uma chave na linha de alimentação do cartão.
 
 Contudo se essa funcionalidade for utilizada e quando houver a necessidade de realizar novas operações, o processo de religamento do cartão microSD além do tempo mínimo de 250 milissegundos, é necessário também um consumo de no máximo 115 mA para que o cartão entre em estado de operação. 
 % Para auxiliar na redução desse consumo energético, o componente Q600 foi introduzido na linha de alimentação do suporte de leitura de cartões microSD. Esse componente é um transistor MOSFET de canal P que foi escolhido para operar nos modos de corte e saturação de forma que seja possível controlar quando o cartão deverá ser alimentado, eliminando assim o seu consumo em modo de espera restando assim somente o consumo quando da realização de operações de leitura e escrita.
@@ -232,11 +232,12 @@ Assim, com base nos dados levantados, o consumo típico dos circuitos do hardwar
 \subsection{Autonomia e estratégias de otimização}
 
 % Em um cenário testado pela fabricante, no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante 9 milissegundos, foi obtido um consumo médio de 1,3 mA.
-Com base nos consumos descritos na tabela \ref{tab:consumos_circuitos}, o consumo total do hardware proposto é de aproximadamente 190 mA quando houver sendo feito uso constante de todas as suas funcionalidades, possui uma autonomia típica de 13 h 9 min quando a alimentação for realizada por um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, o que está aquém das especificações do projeto. Para otimizar esse tempo, é necessário a adoção de algumas estratégias quando do desenvolvimento do firmware para esse hardware.
+
+Definir o tempo de autonomia real para o hardware proposto, depende de dados empíricos de consumo energético que não puderam ser levantados por não ter sido possível produzir unidades de teste desse hardware. Dessa forma, foi estimada uma autonomia com base nas especificações de consumo máximo dos componentes do hardware, descritos em suas folhas de dados e destacados na tabela \ref{tab:consumos_circuitos}. Assim, o consumo total do hardware proposto é de aproximadamente 190 mA quando houver sendo feito uso constante de todas as suas funcionalidades, possui uma autonomia típica de 13 h 9 min quando a alimentação for realizada por um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, o que está aquém das especificações do projeto. Para otimizar esse tempo, é necessário a adoção de algumas estratégias quando do desenvolvimento do firmware para esse hardware.
 
 Reduzir o tempo de utilização do cartão microSD por meio da diminuição do número de operações de escrita no cartão, deve ser uma das primeiras estratégias a serem consideradas e que pode ser realizada por meio da acumulação dos dados lidos dos sensores na memória flash do módulo microcontrolador em blocos de dados que seriam gravados no cartão microSD somente quando atingissem um tamanho pré-determinado. Essa estratégia pode ser otimizada com a utilização do transistor da linha de alimentação do cartão, que permite seu desligamento completo, eliminando assim o consumo em estado de espera durante o período que não houver operações de gravação de dados. 
 
-A operação do módulo microcontrolador durante maiores períodos de tempo nos modos de operação com baixo consumo energético disponíveis, também se mostra como possível estratégia para economia energética. Em um cenário apresentado pela fabricante  no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante nove milissegundos, foi obtido um consumo médio de 1,3 mA.
+A operação do módulo microcontrolador durante períodos maiores de tempo nos modos de operação com baixo consumo energético disponíveis, também se mostra como possível estratégia para economia energética. Em um cenário apresentado pela fabricante  no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante nove milissegundos, foi obtido um consumo médio de 1,3 mA.
 
 
 

@@ -3,6 +3,148 @@
 
 %Para começar a usar este \textit{template}, na plataforma \textit{ShareLatex}, vá nas opções (três barras vermelhas horizontais) no canto esquerdo superior da tela e clique em "Copiar Projeto" e dê um novo nome para o projeto. 
 
+% EU QUERO MOSTRAR COMO É O PROJETO DO HARDWARE DE UM SISTEMA EMBARCADO UTILIZANDO COMO EXEMPLO UM DATALOGGER DE BAIXO CUSTO E BAIXO CONSUMO
+
+% Um sistema embarcado é um sistema computacional que é construído com o propósito de atender as especificações da aplicação na qual será utilizado.
+
+% Sistema embarcado é um sistema computacional que possui hardware e software projetados para que atender as especificações e restrições da aplicação na qual será utilizado. Dessa forma, diferentemente do computadores pessoais que possuem hardwares, como memórias ou unidades de processamento, que podem ser reutilizados em vários computadores, cada sistema embarcado possui um hardware específico para sua necessidade.
+
+% Citar exemplos de impressoras, micro-ondas, televisores e afins.
+
+Diferentemente de computadores pessoais, que possuem hardwares que podem ser reutilizados em outros dispositivos do mesmo tipo, um sistema embarcado possui um hardware projetado para atender os requisitos particulares de uma determinada aplicação na qual será utilizado, não podendo ser reutilizado em outras aplicações. Dessa forma, o hardware de um sistema embarcado projetado para realizar o controle de um forno micro-ondas não poder ser reutilizado para realizar o controle de uma impressora. 
+
+Embora seja possível criar um hardware que possa controlar tanto um forno micro-ondas quanto uma impressora doméstica, isso inviabilizaria financeiramente essas aplicações uma vez que seria preciso lidar não só com funcionalidades, mas também restrições diferentes entre cada uma.
+Dessa forma, essa característica, comum do hardware de sistemas embarcados, surge da necessidade de se atender a um conjunto particular de restrições que são criadas para viabilizar uma determinada aplicação.
+
+O levantamento e análise dessas restrições são etapas essenciais no processo de desenvolvimento do hardware de um sistema embarcado. Esse processo será demonstrado nesse trabalho, que tem por objetivo desenvolver o hardware de um dispositivo \textit{datalogger} que possua funcionalidades e custo unitário que tornem viável, em relação aos dispositivos semelhantes que existem no mercado, sua produção e comercialização.
+
+
+
+
+% seu preço unitário final e o desperdício de poder computacional dado a natureza dessa aplicação, tornam o produto final inviável, sendo necessário assim a criação de um hardware específico para essa aplicação. 
+
+
+
+% o que além de tornar o produto final caro, gera um desperdício de poder computacional e energia, 
+
+
+% surge da necessidade do uso eficiente de recursos para atender as especificações de uma aplicação.
+
+
+% computacionais para atender as especificações de uma aplicação. Em outras palavras, usar o hardware de um computador pessoal para operar um aparelho de ar-condicionado, por exemplo, é ineficiente uma vez que essa aplicação não util 
+
+% Embora essa característica possa parecer negativa à princípio, ela é essencial para atender as limitações de um sistema embarcado, que surgem da necessidade do uso eficiente de recursos computacionais.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Essas limitações surgem da necessidade de se usar de maneira eficiente recursos computacionais necessários para atender as especificações de uma dada aplicação e evitar desperdício de 
+
+
+
+
+% que são definidas para garantir que as especificações do projeto desse tipo. 
+
+
+
+% podem ser das mais diversas, sendo as mais comuns as orçamentárias, de consumo energético e dimensões físicas e são definidas para atender as especificações do projeto de um sistema embarcado. 
+
+
+
+
+% Essas restrições podem ser orçamentárias, de consumo, de dimensões físicas ou afins, surgindo da necessidade  
+
+
+
+
+
+% Essas restrições são elencadas no momento da análise das especificações do projeto 
+
+% Essas restrições podem ser ser de consumo energético, dimensões físicas ou financeiras, uma vez que não é recomendado que o hardware de um computador pessoal seja 
+
+
+% são o consumo energético, dimensões necessárias e custo. 
+
+
+
+
+% ela é necessária para garantir que o sistema embarcado possa operar de acordo com as restrições de uma determinada aplicação.
+
+
+
+% O hardware utilizado em sistemas embarcados não possui a mesma padronização que o hardware utilizado em computadores pessoais, devido a singularidade de cada um, o que faz não só que diversos tipos hardwares de sistemas embarcados existam, como também torna difícil realizar um levantamento para se conhecer todos os tipos de componentes que compõem esse tipo de hardware \cite{marwedel2021embedded}.
+
+% Contudo, à partir de características comuns de sistemas embarcados, é possível definir que esse tipo de hardware deve possuir uma estrutura básica que compreende uma unidade de processamento de informações, interfaces de entrada e saída de dados para que possam interagir com o ambiente, memórias para armazenamento de dados, interfaces de comunicação e uma unidade de fornecimento de energia elétrica. 
+
+% Com essas definições, são então determinados quais os componentes mais adequados para cada uma dessas unidades, de que maneira esses componentes são organizados e como é feito conexão entre eles para criar um hardware que atenda tanto as especificações de projeto, quanto a requisitos técnicos particulares de um determinado sistema embarcado.
+
+% A fim de demonstrar esse processo, foi proposto o projeto do hardware de um dispositivo \textit{datalogger}, um sistema embarcado que realiza medições à partir de sensores e as armazena para uso futuro, seguindo algumas especificações a fim de que esse dispositivo proposto possua funcionalidades e custo unitário que o tornem competitivo frente a dispositivos do mesmo gênero que já existem no mercado.
+
+\section{Objetivos}
+
+Esse trabalho objetiva-se a desenvolver o um dispositivo \textit{datalogger} para demonstrar o processo de desenvolvimento, e suas particularidades, de um hardware de sistema embarcados. Os objetivos específicos são os que seguem:
+
+\begin{itemize}
+    \item Elaborar um escopo de projeto para criação do hardware proposto;
+    \item Levantar especificações de projeto à partir do escopo criado;
+    \item Criar uma arquitetura de hardware que atenda as especificações levantadas;
+    \item Selecionar componentes e criar esquemáticos eletrônicos à partir da arquitetura criada;
+    \item Desenvolver uma placa de circuito impresso;
+    \item Realizar levantamento de custos de produção do hardware projetado;
+    
+\end{itemize}
+
+
+\section{Estrutura do trabalho}
+
+O trabalho está estruturado de forma que o capítulo dois apresenta uma fundamentação teórica que aborda a definição de sistemas embarcados e \textit{dataloggers}. No capítulo três é apresentado e desenvolvido detalhadamente as etpadas do projeto do hardware proposto.
+
+No capítulo quatro são feitas algumas considerações acerca do desempenho energético e custo de produção do hardware projetado. Por fim, o capítulo cinco apresenta propostas de melhorias e conclusões do trabalho desenvolvido.
+
+
+
+
+
+
+% \section{O que é um datalogger?}
+
+% Dispositivo eletrônico que faz a coleta e armazenamento de dados.
+
+% \section{Por que criar? Já não Existe?}
+
+% Os dataloggers que existem hoje no mercado, embora mais eficientes, são mais caros do que o hardware proposto.
+
+% O objetivo é atingir um público-alvo que precisam dessa tecnologia de medição mas que não podem pagar tão caro.
+
+
+
+% \section{O projeto é open-source?}
+
+% É objetivo que o projeto seja aberto, para que contribuições sejam feitas para melhorar o hardware desenvolvido seja por meio de correções, seja por meio de novas implementações. 
+
+
+
+
+
+
+
+
+
+\if{0}
+
 Para começar a utilizar este \textit{template}, siga o tutorial clicando no seguinte \textit{link}:
 \url{https://biblioteca.ufc.br/wp-content/uploads/2015/09/tutorial-sharelatex.pdf}
 
@@ -15,7 +157,7 @@ Apresentam-se, também, neste modelo, algumas orientações de como desenvolver 
 A introdução, tem como finalidade, dar ao leitor uma visão concisa do tema investigado, ressaltando-se o assunto de forma delimitada, ou seja, enquadrando-o sob a perspectiva de uma área do conhecimento, de forma que fique evidente sobre o que se está investigando; a justificativa da escolha do tema; os objetivos do trabalho; o objeto de pesquisa que será investigado. Observe que não se divide a introdução em seções, mas a mesma informa como o trabalho ao todo está organizado.
 
 
-
+\fi
 %Testando o símbolo $\symE$
 
 %\lipsum[5]  % Simulador de texto, ou seja, é um gerador de lero-lero.
