@@ -23,22 +23,36 @@ Para atingir esse objetivo, contudo, um sistema embarcado possui um hardware com
 Contudo, à partir de características comuns aos sistemas embarcados, é possível definir que ele deve possuir uma estrutura básica que compreende uma unidade de processamento de informações, interfaces de entrada e saída de dados para que possam interagir com o ambiente, memórias para armazenamento de dados, interfaces de comunicação e uma unidade de fornecimento de energia elétrica. 
 
 
-\subsection{Tecnologias da unidade de processamento}
+\section{Tecnologias de sistemas embarcados}
 
 
 A unidade de processamento de um sistema embarcado é composta por um dispositivo processador de informações que é responsável por receber e tratar os dados do ambiente de acordo com as especificações da aplicação. Contudo, existem dispositivos que podem ser utilizados sendo eles os seguintes:
 
 
-\begin{itemize}
-    \item \textbf{Processadores de propósito geral: } São dispositivos que podem ser utilizados em diversas aplicações devido sua capacidade de ser programável, possuírem um grande número de instruções disponíveis para  uso e executam pode executar mais de um programa. Com esse tipo de dispositivo, o tempo de de criação e desenvolvimento de um sistema embarcado é menor, mas o custo unitário e o consumo de energia que uma aplicação que o use teria podem ser altos demais;
+% \begin{itemize}
+    \subsection{Processadores de propósito geral } São dispositivos que podem ser utilizados em diversas aplicações devido sua capacidade de ser programável, possuírem um grande número de instruções disponíveis para  uso e executam pode executar mais de um programa. Com esse tipo de dispositivo, o tempo de de criação e desenvolvimento de um sistema embarcado é menor, mas o custo unitário e o consumo de energia que uma aplicação que o use teria podem ser altos demais;
     
-    \item \textbf{Processadores especializados: } São dispositivos que também são programáveis, mas que possuem um conjunto de instruções otimizado para uma determinada classe de aplicações, o que leva a um custo maior de desenvolvimento. Apesar disso,  dependendo da aplicação pode se obter uma boa performance de processamento, consumo e tamanho da aplicação final. Alguns exemplos desse tipo de processadores são o microcontrolador e o \gls{DSP}, enquanto aquele é otimizado para aplicações de controle mas processa poucos dados, esse destinado a aplicações de telefonia ou processamento de áudio por poder processar um grande volume de dados.
+    \subsection{Processadores especializados } São dispositivos que também são programáveis, mas que possuem um conjunto de instruções otimizado para uma determinada classe de aplicações, o que leva a um custo maior de desenvolvimento. Apesar disso,  dependendo da aplicação pode se obter uma boa performance de processamento, consumo e tamanho da aplicação final. Alguns exemplos desse tipo de processadores são o microcontrolador e o \gls{DSP}. Aquele é um \gls{CI} que possui integrado não só uma \gls{CPU}, memória \gls{RAM} e interfaces de entrada e saída, mas também periféricos como \gls{UART}, \gls{I2C} e \gls{SPI}. É otimizado para aplicações de controle devido seu número de interfaces e periféricos, mas não é capaz de processar um grande volume de dados ou lidar com cálculos complexos que demandem uma solução rápida.
+    
+    Para essa tarefa é utilizado o \gls{DSP}, que pode ser tido como uma forma especializada de microcontrolador voltado para processamento de sinais. Possui características arquiteturais que o permitem realizar operações matemáticas, em particular adição e multiplicação, mais rápido que um microcontrolador comum, sendo normalmente utilizado em aplicações de telefonia ou para processamento de áudio e/ou vídeo.
     
     
-    \item \textbf{Processadores dedicados: } São dispositivos que não podem ser programados e são construídos de forma a atender uma aplicação especifica. Possuem a melhor performance e o menor consumo do gênero, mas necessitam de um grande custo para serem desenvolvido.
-\end{itemize}
+    \subsection{Processadores dedicados } São dispositivos que não podem ser programados e são construídos de forma a atender uma aplicação especifica. Possuem a melhor performance e o menor consumo do gênero, mas apresentam um maior custo de desenvolvimento e produção porque uma vez que são construídos, não se pode alterar suas funcionalidades. Exemplos desse tipo de processadores é o \gls{ASIC}, que é um \gls{CI} que possui todas a lógica necessária para execução das tarefas de uma aplicação implementadas fisicamente, não sendo assim possível alterar qualquer uma delas caso haja algum erro de implementação. 
+    
+    Contudo, ainda que classificado nessa categoria, há também o \gls{FPGA}, que é também um \gls{CI} com as mesmas propriedades do \gls{ASIC}, exceto que ao contrário desse, um \gls{FPGA} pode ter suas instruções implementadas modificadas. Isso é possível devido sua construção ser baseada em uma matriz de blocos lógicos reconfiguráveis que são ligados entre si por meio de conexões programáveis, permitindo assim a reimplementação da lógica para execução das tarefas da aplicação.
+% \end{itemize}
 
-\subsection{Características Comuns}
+
+
+\section{System-On-A-Chip}
+
+Um dos desafios da criação e produção de sistemas embarcados é a utilização do menor número de \gls{CI}s possível para atender as especificações de uma aplicação, assim, a possibilidade de se usar um único chip que satisfizesse essa necessidade seria a melhor solução. Isso é possível com o uso de um \gls{SOC}, um circuito integrado que é formado por diversos módulos que compõe um sistema computacional. \cite{hamacher2011computer}s
+
+Além dos módulos básicos, \gls{CPU}, \gls{RAM} e interfaces de entrada/saída, esse tipo de circuito integrado pode possuir módulos de processamento de sinais, módulos de comunicações sem fio e mais. Embora mais caro que microcontroladores ou \gls{DSP}s já discutidos, dependendo da aplicação, a comodidade de se possuir tantos módulos em um único circuito integrado se mostra vantajosa.
+
+
+
+\section{Características Comuns}
 
 Sistemas embarcados, além das limitações de recursos, possuem algumas características que são comuns a todos independentemente da aplicação. A primeira delas é a forma de interação com o ambiente, que devido a falta de suporte a telas e teclados assim como computadores pessoais, que se dá por meio de sensores e atuadores conectados ao hardware do sistema embarcado. Essa forma de interação faz com que esses dispositivos sejam tipicamente sistemas reativos, que são sistemas que estão em constante interação com o ambiente esperando por algum estímulo e executam um conjunto de instruções bem definidas quando são detectados.
 
@@ -46,80 +60,52 @@ Além disso, devido suas características, um sistema embarcado é dedicado some
 
 
 
-% Embora semelhantes, por possuir um propósito bem definido, diferentemente de computadores um sistema embarcado possui um suporte muito menor funcionalidades que não são essenciais o funcionamento da aplicação em que é utilizado, fazendo com que seu hardware possua diversas limitações para que sua aplicação seja viável. 
+\section{Desafios de projeto}
+
+O projeto de um sistema enfrenta muitas desafios e problemas não só por causa da limitação de recursos disponíveis para uso, como também na forma como a aplicação deve interagir com o ambiente. Um dos desafios comuns é criar um sistema que atenda a requisitos de dependabilidade.
+
+Segundo \citeonline{marwedel2021embedded}, um sistema embarcado atinge a dependabilidade quando consegue executar suas funcionalidades com uma alta probabilidade e sem causar nenhum dano. Essa propriedade é necessária devido aos impactos imediatos que um sistema embarcado pode ter em um determinado ambiente. Assim, para se atingir esse estado é preciso que os seguintes aspectos sejam atendidos:
+
+\begin{itemize}
+
+    \item \textbf{Segurança da informação} - Define-se como a preservação da confidencialidade, integridade e disponibilidade da informação processada;
+    
+    \item \textbf{Confidencialidade} - Um dos aspectos da segurança da informação, pode ser definido como a propriedade da informação de não estar disponível para entidades, pessoas ou processos não autorizados;
+    
+    \item \textbf{Operação segura} - É definida como a ausência de riscos inaceitáveis, danos físicos ou à saúde das pessoas, direta ou indiretamente devido algum dano ao ambiente;
+    
+    \item \textbf{Confiabilidade} - Probabilidade de que um sistema não irá falhar dentro de um determinado período de tempo;
+    
+    \item \textbf{Reparabilidade} - Probabilidade que um sistema falho tem de ser reparado dentro de um determinado período de tempo;
+    
+    \item \textbf{Disponibilidade} - Pode ser definido como a probabilidade de um sistema estar disponível.
+    
+    
+\end{itemize}
+
+\newpage
+
+Além da dependabilidade, outro desafio importante no desenvolvimento de um sistema embarcado é a criação de um dispositivo que faça o uso eficiente de recursos computacionais. Alguns desses recursos que devem ser considerados para análise durante a criação do sistema embarcado são:
+
+\begin{itemize}
+
+    \item Memória (\gls{RAM});
+    \item Espaço de código;
+    \item Ciclos de processador ou velocidade;
+    \item Uso eficiente de bateria (economia de energia);
+    \item Periféricos do processador.
+    
+\end{itemize}   
 
 
+Deve ser feito assim, a escolha de qual desses recursos priorizar, de acordo com a aplicação. Para isso, pode-se realizar trocas da quantidade disponível de um desses recursos por outro, por exemplo, para priorizar o uso eficiente de baterias pode ser reduzido a velocidade do processador para que ele consumo menos energia na execução das suas funções. Contudo, mesmo com essa possibilidade, nem todos os recursos são passíveis de serem otimizados em detrimento de outros. \cite{white2011making}
 
-
-
-% Por exemplo, sua unidade de processamento pode ter uma reduzida frequência de operação para economizar energia quando for alimentado por baterias, menos espaço de armazenamento pode estar disponível para que sua fabricação tenha um custo menor, dentre outras características.
-
-
-
-
-
-
-
-
-% Embora sejam semelhantes, um sistema embarcado difere de um sistema computacional convencional por possuir recursos computacionais limitados e são projetados para uma aplicação específica. Assim, um sistema embarcado responsável pela operação de uma impressora, por exemplo, não terá um grande poder de processamento, não deverá ter um alto consumo energético para não afetar no funcionamento geral do dispositivo e não poderá ser reutilizado em outro dispositivo. Além dessas caraterísticas, um sistema embarcado também precisa atender a restrições como dimensões, peso e custo unitário para que possa ser possível integrá-lo a outros sistemas. 
-
-% Além dessas caraterísticas, a forma de interação com o ambiente também difere em relação aos sistemas convencionais, que possuem a disposição teclados, telas ou afins. Um sistema embarcado por sua vez faz uso de dispositivos sensores e/ou atuadores para receber, processar e responder estímulos do ambiente em que está presente.
-
-
-% Além disso um sistema embarcado necessita atender determinadas restrições de funcionamento, tais como restrições de consumo
-
-
-% De forma semelhante a um sistema computacional convencional como computadores pessoais e celulares, um sistema embarcado deve ser capaz de interagir com o ambiente em que está instalado. 
-
-% Sistemas embarcados também precisam ser capazes de receber, processar e responder estímulos do ambientes mas diferentemente de computadores de mesa, celulares ou afins, não podem contar com o uso de teclados e telas para fazer essa interação, utilizando sensores e atuadores para realizar essa tarefa. Dessa forma, 
-
-
-
-
-
-
-
-
-% \subsection{Características}
-
-
-
-
-
-
-% Sistemas embarcados são formados por um conjunto de sensores e atuadores conectados eletronicamente a processadores de informações. Esses processadores, diferentemente dos processadores de sistemas computacionais convencionais, possuem características específicas que permitem dividi-los em processadores de propósito geral, processadores de aplicação específica e processadores dedicados.
-
-
-% A tecnologia de processadores de uso geral se refere aos dispositivos desenvolvidos para serem utilizados em diversos tipos de aplicações, o que é possibilitado por serem reprogramáveis e possuírem recursos, como um grande número registradores ou uma grande memória de programa, que aceleram a criação e lançamento de um produto no mercado em detrimento de um uso otimizado dos recursos disponíveis. 
-
-% Já os processadores de aplicação específica por sua vez, são dispositivos que assim como os processadores de uso geral, também são reprogramáveis, mas que possuem uma limitação de recursos disponíveis com o objetivo de 
-
-
-
-% São comumente utilizados em microcontroladores, circuitos integrados que possuem unidades de processamento, memória e armazenamento em um único \textit{chip}. 
-
-% Já os processadores dedicados são desenvolvidos para atender as necessidades de uma determinada aplicação específica, assim, uma vez que são programados, não é possível alterar alguma de suas funcionalidades. Devido isso, esses dispositivos geralmente possuem um baixo consumo energético e também um baixo valor unitário. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%% Sensores e Atuadores %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% Sensores e Atuadores %%%%%%%%%%%%%%%%%%
 % Sistemas embarcados precisam ser capazes de receber, processar e responder estímulos do ambientes mas diferentemente de computadores de mesa, celulares ou afins, não podem contar com o uso de teclados e telas para fazer essa interação. Dessa forma, um sistema embarcado interage com o ambiente que está inserido por meio do uso de sensores e atuadores. 
 
-\section{Dataloggers}\label{sec:datalogger}
+% \section{Dataloggers}\label{sec:datalogger}
 
-Um \textit{Datalogger} é um dispositivo de funcionamento autônomo, que conta com sensores, memória interna e é capaz de realizar e disponibilizar a leitura de uma ou mais variáveis do ambiente e armazená-lo por um determinado período de tempo que pode ser de dias, meses ou até anos. Contudo, para atender a esse requisito, a taxa de amostragem dessas variáveis é limitada a escala de segundos, do contrário sua memória interna seria ocupada totalmente em um curto período de tempo.
+% Um \textit{Datalogger} é um dispositivo de funcionamento autônomo, que conta com sensores, memória interna e é capaz de realizar e disponibilizar a leitura de uma ou mais variáveis do ambiente e armazená-lo por um determinado período de tempo que pode ser de dias, meses ou até anos. Contudo, para atender a esse requisito, a taxa de amostragem dessas variáveis é limitada a escala de segundos, do contrário sua memória interna seria ocupada totalmente em um curto período de tempo.
 
 
 % \section{\textit{Data Acquisition Systems} - DAQs}

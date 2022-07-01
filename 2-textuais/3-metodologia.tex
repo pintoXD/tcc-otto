@@ -16,8 +16,9 @@ A ideia principal do projeto é desenvolver um datalogger cujo custo de aquisiç
 
 Essas leituras devem ser realizadas periodicamente de forma que o intervalo entre cada leitura esteja na casa dos segundos, se possível, e devem ser armazenadas em uma mídia de armazenamento de massa removível. Essa mídia deve manter os dados guardados por um período de tempo  de pelo menos um ano e suportar variações de temperaturas ligeiramente maiores ou menores que a temperatura média do local de instalação.
 
+\section{Dataloggers}\label{sec:datalogger}
 
-%  Complementar aqui o escopo
+Um \textit{Datalogger} é um dispositivo de funcionamento autônomo, que conta com sensores, memória interna e é capaz de realizar e disponibilizar a leitura de uma ou mais variáveis do ambiente e armazená-lo por um determinado período de tempo que pode ser de dias, meses ou até anos. Contudo, para atender a esse requisito, a taxa de amostragem dessas variáveis é limitada a escala de segundos, do contrário sua memória interna seria ocupada totalmente em um curto período de tempo.
 
 \section{Levantamento das especificações técnicas do hardware}
 
@@ -28,7 +29,7 @@ Realizando a análise do escopo definido, foram então levantadas as especifica�
         \item Possuir a capacidade de ler a umidade relativa do ambiente;
         \item Possuir a capacidade de ler o nível de luminosidade do ambiente;
         \item Possuir alternativa de alimentação direta ou via bateria;
-        \item Leitura de sensores via interfaces I2C, SPI e/ou UART;
+        \item Leitura de sensores via interfaces \gls{I2C}, \gls{SPI} e/ou \gls{UART};
         \item Formatação dos dados lidos dos sensores para auxiliar no envio e/ou coleta;
         \item Persistir os dados em um cartão SD para a coleta manual dos dados;
         \item Persistência dos dados coletados por no mínimo 45 dias;
@@ -97,7 +98,7 @@ Assim, para cada objeto do diagrama foram levantado quais tipos de componentes f
  
  \item Unidade de processamento
      \begin{itemize}
-         \item Microcontrolador que opere em 3V3 e possua interfaces de comunicação USART, SPI e I2c;
+         \item Microcontrolador que opere em 3V3 e possua interfaces de comunicação \gls{I2C}, \gls{SPI} e \gls{UART};
      \end{itemize}
 
  \item Sensores de umidade, temperatura e luminosidade; 
@@ -134,7 +135,7 @@ Assim, para cada objeto do diagrama foram levantado quais tipos de componentes f
 
 Tendo sido levantado quais os tipos de componentes devem fazer parte da construção do hardware proposto, é preciso dar início ao processo escolha dos componentes no mercado de componentes eletrônicos. Contudo, algumas recomendações devem ser feitas antes que essa fase do projeto seja iniciada a fim de se evitar custos adicionais seja durante a fase de desenvolvimento, seja na fase de produção do hardware desenvolvido. 
 
-Assim, como primeira recomendação pode ser destacado a escolha de componentes ativos como microcontroladores,  circuitos integrados de aplicação específica (do inglês Application Specific Integrated Circuit - ASIC) ou semelhantes, que estejam com produção ativa e que tenham um tempo de vida útil garantida pela fabricante de pelo menos 10 anos à partir da data em que projeto inicia sua fase de produção. Essa recomendação visa garantir a longevidade do dispositivo desenvolvido, visto que quando há a descontinuidade de produção ou falta desse tipo de componente no mercado, isso gera um custo extra ao fabricante que se desejar manter seu hardware sendo produzido vai ou precisar adquirir e manter um estoque próprio desses componentes, ou arcar com os custos extras de retrabalho do seu hardware para substituir o componente que está em falta por um equivalente. 
+Assim, como primeira recomendação pode ser destacado a escolha de componentes ativos como microcontroladores, \gls{ASIC}s ou semelhantes, que estejam com produção ativa e que tenham um tempo de vida útil garantida pela fabricante de pelo menos 10 anos à partir da data em que projeto inicia sua fase de produção. Essa recomendação visa garantir a longevidade do dispositivo desenvolvido, visto que quando há a descontinuidade de produção ou falta desse tipo de componente no mercado, isso gera um custo extra ao fabricante que se desejar manter seu hardware sendo produzido vai ou precisar adquirir e manter um estoque próprio desses componentes, ou arcar com os custos extras de retrabalho do seu hardware para substituir o componente que está em falta por um equivalente. 
 
 Já para componentes passivos, como resistores, capacitores e afins, é preciso um cuidado semelhante uma vez que também há problema de descontinuidade da produção para esse tipo de componente pelos seus fabricantes. Contudo o processo de substituição por um componente equivalente é mais simples uma vez que um componente com as mesmas propriedades do escolhido inicialmente podem ser produzidos por mais de um fabricante. 
 
@@ -145,20 +146,20 @@ Dessa forma, visando aproveitar essa característica dos componentes passivos é
 
 Nessa etapa do projeto são buscados em distribuidores de componentes eletrônicos os que melhor se encaixam nas especificações técnicas do hardware proposto, assim, para cada um dos tipos de componentes levantados na subseção \ref{subsec:levantamento_tipos} essa busca será realizada. 
 
-Contudo, devido a grande quantidade desses distribuidores no mercado de componentes eletrônicos, a busca desses componentes foi restringida a somente alguns desses distribuidores que são elencados abaixo:
+% Contudo, devido a grande quantidade desses distribuidores no mercado de componentes eletrônicos, a busca desses componentes foi restringida a somente alguns desses distribuidores que são elencados abaixo:
 
-\begin{itemize}
-    \item Arrow Electronics 	
-    \item Arrow.cn 	
-    \item Avnet 	
-    \item Digi-Key 	
-    \item Element14 	
-    \item Farnell 	
-    \item Future Electronics 	
-    \item LCSC 	
-    \item Mouser 	
-    \item Newark
-\end{itemize}
+% \begin{itemize}
+%     \item Arrow Electronics 	
+%     \item Arrow.cn 	
+%     \item Avnet 	
+%     \item Digi-Key 	
+%     \item Element14 	
+%     \item Farnell 	
+%     \item Future Electronics 	
+%     \item LCSC 	
+%     \item Mouser 	
+%     \item Newark
+% \end{itemize}
 
 \subsubsection{Microcontrolador}\label{subsubsec:esp32_modulo}
 
@@ -167,7 +168,7 @@ Para a escolha desse componente em um primeiro momento foram analisadas as espec
 
 Foi observado também a necessidade do microcontrolador ter um baixo consumo energético durante sua operação, de forma que seja possível manter o dispositivo funcionando ininterruptamente por 45 dias com uma alimentação provinda de um conjunto de pilhas. Por conta disso no momento da seleção, além dessa característica, foi buscado um microcontrolador que possuísse também um modo de operação em hibernação, no qual o microcontrolador mantém energizado somente seus periféricos essenciais para diminuir o consumo energético ao máximo. 
 
-Tendo sido feitas essas considerações, foi então escolhido o módulo microcontrolador da Espressif Systems, ESP32-S3-WROOM-1-N8, que é formado pela associação do \textit{System-On-A-Chip} - SoC - ESP32-S3 com uma memória Flash SPI. Algumas das propriedades desse módulo são:
+Tendo sido feitas essas considerações, foi então escolhido o módulo microcontrolador da Espressif Systems, ESP32-S3-WROOM-1-N8, que é formado pela associação do \gls{SOC} ESP32-S3 com uma memória \textit{Flash} \gls{SPI}. Algumas das propriedades desse módulo são:
 
     \begin{itemize}
         \item Quantidade de portas de Entradas/Saída: 36;
@@ -178,6 +179,21 @@ Tendo sido feitas essas considerações, foi então escolhido o módulo microcon
         \item Tensão de operação: 3V a 3,6V;
         \item Faixa de temperatura de operação: -40ºC a 85ºC;
     \end{itemize}
+    
+    
+    \begin{figure}[h!]
+            \captionsetup{width=16cm}
+    		\Caption{\label{fig:datalogger_blocks} Diagrama de Blocos do \gls{SOC} ESP32-S3}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esp32-s3_datasheet_en-02.jpg}}
+    		}{
+    			\Fonte{Espressif Systems (2022).}
+    		}	
+   \end{figure}    
+    
+    
+    
     
 
 Juntamente com essas propriedades, outros fatores que influenciaram na escolha desse módulo foram seu preço unitário de US\$ 3,29 e uma garantia de 12 anos de longevidade garantida pela Espressif Systems à partir do dia primeiro de janeiro de 2021. 
