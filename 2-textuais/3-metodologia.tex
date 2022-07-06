@@ -5,6 +5,79 @@
 
 % A escolha entre uma dessas soluções, deve levar em conta o tipo de aplicação e o nível de criticidade dos dados levantados. Para levantamento de dados de temperatura de salas de armazenamento de vacinas, ou da umidade relativa do ar em uma cultura agrícola e afins, a escolha de um \textit{Datalogger} se mostra ideal. 
 
+
+
+\section{Estudo de mercado}\label{sec:estudo_mercado}
+
+
+% Um \textit{datalogger} é um dispositivo de funcionamento autônomo, que conta com sensores, memória interna e é capaz de realizar e disponibilizar a leitura de uma ou mais variáveis do ambiente e armazená-lo por um determinado período de tempo que pode ser de dias, meses ou até anos. 
+
+
+Em busca de compreender propriedades como preço, dimensões e precisão de medição dos \textit{dataloggers} existentes no mercado atualmente, realizou-se um estudo no qual foi buscado quais dispositivos realizam a leitura de temperatura e umidade, possuem comunicação Wi-Fi ou Bluetooth e possuem uma opção de alimentação por bateria. Os dispositivos encontrados que atendem as especificações da pesquisa, que estão listados na tabela \ref{tab:dataloggers_novos}. 
+	\begin{table}[!h]
+	
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:dataloggers_novos} \textit{Dataloggers: Preços e Mercados}}%
+% 	\resizebox{\textwidth}{!}{
+	\IBGEtab{}{%
+		\begin{tabular}{ccccc}
+			\toprule
+			Modelo & Fabricante & Preço (R\$) & Mercado & Nível de Proteção \\
+			\midrule \midrule
+            RCW-360        & Elitech            &  1.499,00 & Nacional    & IP64/IP65 \\
+            EL-WiFi-TH     & Lascar Electronics &  1.305,14 & Estrangeiro & IP55      \\
+            TandD RTR-507B & TandD              &  2.242,57 & Estrangeiro & IP64      \\
+            160 TH         & testo              &  2.842,00 & Nacional    & IP20
+            \\
+		    \bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{Todos os dispositivos medem temperatura e umidade relativa do ambiente}%
+% 	\Nota[Legenda]{Na coluna de fabricantes, as letras representam os seguintes fabricantes\\
+% 	A = Display Visions\\
+% 	B = FLIR Extech\\
+% 	C = Lascar Electronics\\
+% 	D = O autor}%
+    }
+    % }
+    \end{table}
+
+Houve a necessidade de fazer essa busca no mercado no estrangeiro, dessa forma os preços apresentados dos itens que necessitam de importação levam em conta tanto o frete quanto as taxas alfandegárias de importação. Tendo em vista os valores de mercados encontrados, observa-se que é necessário que o hardware proposto deve possuir um preço unitário menor que R\$1.305,14. 
+
+
+	\begin{table}[!h]
+	
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:dataloggers_novos_propriedades} \textit{Dataloggers: Propriedades}}%
+	\resizebox{\linewidth}{!}{
+	\IBGEtab{}{%
+		\begin{tabular}{ccccccc}
+			\toprule
+			Modelo & Dimensões & Autonomia & Faixa de Leitura (ºC) & Precisão (ºC) & Umidade Relativa (\%) & Precisão(\%)\\
+			\midrule \midrule
+           RCW-360        & Não informado   & 3 meses       & -35 a 80 & 0,5 & 0 a 99 & 5    \\
+           EL-WiFi-TH     & 82 x 70 x 23 mm & 6 meses       & -20 a 60 & 0,3 & 0 a 100 & 2    \\
+           TandD RTR-507B & 62 x 47 x 19 mm & 10 meses      & -25 a 70 & 0,3 & 0 a 99  & 2,50 \\
+           160 TH         & 76 x 64 x 22 mm & Não informado & -30 a 50 & 0,1 & 0 a 100 & 2   
+            \\
+	    \bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{Todos os dispositivos medem temperatura e umidade relativa do ambiente}%
+% 	\Nota[Legenda]{Na coluna de fabricantes, as letras representam os seguintes fabricantes\\
+% 	A = Display Visions\\
+% 	B = FLIR Extech\\
+% 	C = Lascar Electronics\\
+% 	D = O autor}%
+    }
+    }
+    \end{table}
+
+A tabela \ref{tab:dataloggers_novos_propriedades} descreve quais algumas propriedades dos \textit{dataloggers} encontrados na busca, mas que são usadas como objetivo a ser alcançado no desenvolvimento do dispositivo proposto.
+
+
 \section{Escopo de projeto}
 
 
@@ -12,13 +85,9 @@
 
 % A persistência dos dados coletados deve idealmente ser feita em uma mídia que removível que pudesse manter os dados armazenados por um longo período de tempo e que também seja capaz de suportar temperaturas um maiores que a temperatura ambiente. Além disso, os dados devem ser escritos de forma que seja facilitada a importação deles para ferramentas de visualização de dados. 
 
-A ideia principal do projeto é desenvolver um datalogger cujo custo de aquisição não seja muito alto, dado suas características técnicas. Com isso em mente, foi definido que o datalogger deveria ser um dispositivo capaz de ler temperatura, umidade relativa e luminosidade do ambiente em que ele estiver instalado. 
+A ideia principal do projeto é desenvolver um datalogger de baixo custo de aquisição, dado suas características técnicas e deve ser um dispositivo capaz de ler temperatura, umidade relativa e luminosidade do ambiente em que ele estiver instalado. 
 
-Essas leituras devem ser realizadas periodicamente de forma que o intervalo entre cada leitura esteja na casa dos segundos, se possível, e devem ser armazenadas em uma mídia de armazenamento de massa removível. Essa mídia deve manter os dados guardados por um período de tempo  de pelo menos um ano e suportar variações de temperaturas ligeiramente maiores ou menores que a temperatura média do local de instalação.
-
-\section{Dataloggers}\label{sec:datalogger}
-
-Um \textit{Datalogger} é um dispositivo de funcionamento autônomo, que conta com sensores, memória interna e é capaz de realizar e disponibilizar a leitura de uma ou mais variáveis do ambiente e armazená-lo por um determinado período de tempo que pode ser de dias, meses ou até anos. Contudo, para atender a esse requisito, a taxa de amostragem dessas variáveis é limitada a escala de segundos, do contrário sua memória interna seria ocupada totalmente em um curto período de tempo.
+Essas leituras devem ser realizadas periodicamente de forma que o intervalo mínimo entre cada possa estar na casa dos segundos, se possível, e devem ser armazenadas em uma mídia de armazenamento de massa removível. Essa mídia deve manter os dados guardados por um período de tempo  de pelo menos 45 dias e suportar variações de temperaturas ligeiramente maiores ou menores que a temperatura média do local de instalação.
 
 \section{Levantamento das especificações técnicas do hardware}
 
@@ -164,7 +233,7 @@ Nessa etapa do projeto são buscados em distribuidores de componentes eletrônic
 \subsubsection{Microcontrolador}\label{subsubsec:esp32_modulo}
 
 
-Para a escolha desse componente em um primeiro momento foram analisadas as especificações do projeto e levantadas algumas características que o microcontrolador ideal para o hardware proposto deveria possuir. A primeira dessas características é a presença dos periféricos UART, SPI e I2C no componente escolhido devido a necessidade de comunicação com os sensores ou a mídia removível usando um desses protocolos.
+Para a escolha desse componente em um primeiro momento foram analisadas as especificações do projeto e levantadas algumas características que o microcontrolador ideal para o hardware proposto deveria possuir. A primeira dessas características é a presença dos periféricos \gls{UART}, \gls{SPI} e \gls{I2C} no componente escolhido devido a necessidade de comunicação com os sensores ou a mídia removível usando um desses protocolos.
 
 Foi observado também a necessidade do microcontrolador ter um baixo consumo energético durante sua operação, de forma que seja possível manter o dispositivo funcionando ininterruptamente por 45 dias com uma alimentação provinda de um conjunto de pilhas. Por conta disso no momento da seleção, além dessa característica, foi buscado um microcontrolador que possuísse também um modo de operação em hibernação, no qual o microcontrolador mantém energizado somente seus periféricos essenciais para diminuir o consumo energético ao máximo. 
 
@@ -224,7 +293,7 @@ De acordo com o levantado na seção \ref{subsec:levantamento_tipos}, os compone
 Já para as interfaces de comunicação USB e leitura do cartão microSD, são necessários um conector do tipo micro USB e um suporte de leitura para cartão microSD, respectivamente. Também não há restrição de fabricante ou modelo para esses componentes uma vez que são componentes genéricos. 
 
 
-\subsubsection{Fonte de alimentação}
+\subsubsection{Fonte de alimentação}\label{subsubsec:fonte_alimentacao}
 
 Para o correto funcionamento de todos os demais componentes do hardware proposto, uma tensão de operação de 3,3 V é necessária. Contudo, conforme especificado na seção \ref{subsec:levantamento_tipos}, o hardware deve possuir suporte para alimentação fornecida por fonte externa ou proveniente de baterias do tipo AA. Esse tipo de bateria fornece até 1,5 V para cada unidade, de forma que para alimentar o hardware proposto é necessário um conjunto dessas pilhas AA associadas em série.
 
@@ -334,7 +403,31 @@ Por fim as características do circuito de alimentação do hardware podem ser r
 
 \subsubsection{Circuito de alimentação}
 
-Primeiro circuito a ser criado, o circuito de alimentação define quais serão os valores de corrente e tensão que estão disponíveis aos demais circuitos do hardware, além de também definir os valores ideais de tensão e corrente de entrada do hardware. 
+Primeiro circuito a ser criado, foram seguidas as recomendações e adotados os componentes indicados na Seção \ref{subsubsec:fonte_alimentacao} para a construção desse circuito. Além desses componentes, foi adicionado também ao circuitos alguns componentes necessários ao regulador segundo sua folha de dados.
+
+
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:datalogger_blocks} Esquemático Circuito de Alimentação Parte 1}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.9\textwidth]{figuras/capitulo3/esquematicos/power_1.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}    
+
+    \begin{figure}[h!]
+        \captionsetup{width=10cm}
+		\Caption{\label{fig:datalogger_blocks} Esquemático Circuito de Alimentação Parte 2}
+		%\centering
+		\UFCfig{}{
+			\fbox{\includegraphics[width=0.9\textwidth]{figuras/capitulo3/esquematicos/power_2.png}}
+		}{
+			\Fonte{elaborado pelo autor (2022).}
+		}	
+\end{figure}    
+\newpage
 
 % Como o hardware pode ser alimentado tanto por um conjunto de pilhas quanto por uma fonte de alimentação convencional, pode ocorrer casos em que essas duas fontes estejam ligadas ao hardware ao mesmo tempo fazendo com que a fonte convencional tente alimentar as pilhas e vice-versa. Assim, pra evitar essa interação, foi necessário desenvolver um circuito que fizesse a escolha entre a fonte convencional ou as pilhas para alimentar o hardware. 
 
@@ -350,7 +443,35 @@ Primeiro circuito a ser criado, o circuito de alimentação define quais serão 
 
 O sensor LDR pede somente um circuito formado pela sua associação em série com um resistor de 10 k$\Omega$, para a formação um circuito divisor de tensão, o qual será conectado a um dos conversores analógico-digital do módulo microcontrolador.
 
-O sensor de temperatura e umidade HDC1080 por fazer sua comunicação com o módulo microcontrolador utilizando o protocolo I²C, necessitou de resistores \textit{pull-up} de 10 k$\omega$ conectados em paralelo a cada uma de suas linhas de dados, de acordo com as recomendações da fabricante.
+
+    \begin{figure}[h!]
+            \captionsetup{width=7cm}
+    		\Caption{\label{fig:datalogger_blocks} Esquemático sensor LDR}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.4\textwidth]{figuras/capitulo3/esquematicos/light_sensor.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}  
+
+\newpage
+
+
+O sensor de temperatura e umidade HDC1080 por fazer sua comunicação com o módulo microcontrolador utilizando o protocolo \gls{I2C}, necessitou de resistores \textit{pull-up} de 10 k$\Omega$ conectados em paralelo a cada uma de suas linhas de dados, de acordo com as recomendações da fabricante.
+
+    \begin{figure}[h!]
+            \captionsetup{width=7cm}
+    		\Caption{\label{fig:datalogger_blocks} Esquemático sensor HDC1080}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.8\textwidth]{figuras/capitulo3/esquematicos/temp_sensor.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}  
+
+
 
 
 \subsubsection{Cartão microSD}
@@ -359,6 +480,19 @@ Para o circuito de comunicação com o cartão microSD foi necessário conectar 
 
 Devido ao grande consumo de corrente, 100 mA em média mas podendo ter picos de 200 mA, foi necessário adicionar um transistor MOSFET de baixo quesciente na linha de alimentação do cartão microSD para que, quando não estiver sendo utilizado para gravação ou leitura de dados, permaneça desligado e não haja desperdício de energia.
 
+    \begin{figure}[h!]
+            \captionsetup{width=7cm}
+    		\Caption{\label{fig:datalogger_blocks} Esquemático suporte microSD}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esquematicos/sdcard.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}  
+
+
+
 \subsubsection{Circuito de controle}
 
 
@@ -366,20 +500,54 @@ O circuito de controle compreende o módulo microcontrolador e os circuitos auxi
 
 Para permitir a reinicialização do dispositivo quando preciso, foi também externado o pino três do módulo que tem como função habilitar o seu funcionamento quando ligado ao terra. Assim, foi seguido a recomendação da fabricante de usar um botão táctil em associação com capacitores para formar o circuito de habilitação de funcionamento do módulo microcontrolador.
 
-Também foi externado o pino 27 do módulo que quando ligado ao terra, indica que o dispositivo deverá inicializar em modo \textit{download}, no qual será possível realizar a gravação de um novo \textit{firmware}. Do contrário, o módulo será inicializado no modo SPI em busca de conjunto de instruções para executar. 
+Também foi externado o pino 27 do módulo que quando ligado ao terra, indica que o dispositivo deverá inicializar em modo \textit{download}, no qual será possível realizar a gravação de um novo \textit{firmware}. Do contrário, o módulo será inicializado no modo \gls{SPI} em busca de conjunto de instruções para executar. 
 
-\subsection{Design PCB}
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:datalogger_blocks} Esquemático circuito de controle}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esquematicos/controller.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}  
 
 
 
 
-Após terem sido criados os esquemáticos eletrônicos do hardware projetado, foi então passado para a fase de desenvolvimento do leiaute a placa de circuito impresso (\textit{Printed Circuit Board} - PCB) do hardware proposto. Como passo inicial, foram primeiramente definidos alguns requisitos que a placa deveria atender para manter baixo seu custo de produção:
+
+\subsection{Design PCI}
+
+
+
+
+Após terem sido criados os esquemáticos eletrônicos do hardware projetado, foi então passado para a fase de desenvolvimento do leiaute a \gls{PCI} do hardware proposto. Como passo inicial, foram primeiramente definidos alguns requisitos que a placa deveria atender para manter baixo seu custo de produção:
 
 \begin{itemize}
-    \item A placa deve possuir a largura de X centímetros e comprimento de Y centímetros;
+    \item A placa deve possuir preferencialmente a largura de 50 centímetros e comprimento de 50 centímetros;
     
     \item A placa deverá ser projetada em duas camadas somente; 
 \end{itemize}
+
+
+\subsubsection{\textit{Stackup} da PCI}
+
+O \textit{stackup} de uma PCI define as características e parâmetros que o conjunto de cobre e materiais dielétricos que uma placa projetada deve possuir. Assim, como as especificações do projeto pedem, é feito o \textit{stackup} para de uma placa de circuito impresso com duas camadas.
+
+É definido FR-4 como material dielétrico de base para a produção dessa placa, devido não só sua popularidade, como também pela sua característica de retardar fogo em caso de incêndio, e sua espessura deve ser de 1,6 mm (63 mils). Já a o cobre aplicado sobre o dielétrico possui uma espessura 0,036 mm (1,4 mils), o que equivale a aproximadamente a quantidade de 1 oz/pé², e uma impedância típica de 50$\Omega$. A placa produzida tem uma espessura total de 1.6 mm.
+
+
+    \begin{figure}[h!]
+            \captionsetup{width=7cm}
+    		\Caption{\label{fig:pcb_stackup} \textit{Stackup} da PCI}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/pcb/pcb_stackup.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}  
 
 
 \subsubsection{Particionamento e posicionamento}
@@ -399,7 +567,7 @@ Como primeiro passo foi realizado um particionamento funcional do espaço defini
    \end{figure}
 
 
-Em seguida fooram trazidos os desenhos dos componentes descritos nos esquemáticos eletrônicos para a visão de projeto PCB e dado início ao processo de organização dos componentes no espaço definido para a placa, com o circuito de controle sendo o primeiro a ser colocado e organizado nesse espaço.
+Em seguida foram trazidos os desenhos dos componentes descritos nos esquemáticos eletrônicos para a visão de projeto PCB e dado início ao processo de organização dos componentes no espaço definido para a placa, com o circuito de controle sendo o primeiro a ser colocado e organizado nesse espaço.
 
 Foi procurado posicionar o módulo microcontrolador no espaço que lhe foi reservado no particionamento, porém devido sua antena de comunicação Wi-Fi, foi seguida a recomendação da fabricante e o módulo foi posicionado de forma que a antena ficasse além das bordas da placa. Em seguida foram adicionados dois capacitores em paralelo com valores recomendados pela fabricante, paralelos a linha de alimentação do módulo para atuarem como um circuito de desacoplamento. Os demais componentes desse circuito que compõem o sub-circuito de habilitação de operação do módulo microcontrolador, foram posicionados também o mais próximo possível do módulo com exceção ao botão táctil e seus componentes auxiliares, que foram colocados na borda oposta da placa.
 
@@ -409,16 +577,88 @@ Os circuitos dos sensores foram colocados também na área que lhes foi reservad
 
 Assim, o leitor de cartão microSD foi posicionado ao centro da placa de forma que ficasse oposto ao posicionamento do módulo microcontrolador. Para que fosse facilitado seu roteamento, o leitor foi colocado na face inferior da placa. Já os componentes do circuito de interface de usuário foram colocados o mais próximo das pontas das placa possível, de forma que também ficassem na mesma face mas do lado oposto ao módulo microcontrolador.
 
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:pcb_placement} Posicionamento final dos componentes}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.8\textwidth]{figuras/capitulo3/pcb/pcb_no_route.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}
+
+\newpage
+
 
 \subsubsection{Roteamento}
 
-O processo de roteamento foi realizado utilizando-se inicialmente regras genéricas para tamanho de trilhas. Dessa forma, as trilhas inicialmente foram configuradas para possuírem 10 mil de largura. As primeiras trilhas a serem roteadas foram as conexões de comunicação e leitura de sensores devido sua importância em relação às demais conexões, assim pode-se ter maior liberdade de espaço para realizar o roteamento. 
+O processo de roteamento foi realizado utilizando-se inicialmente regras genéricas para tamanho de trilhas sendo configuradas para possuírem 10 mil de largura. As primeiras trilhas a serem roteadas foram as de conexões de comunicação e leitura de sensores devido sua importância em relação às demais conexões, assim pode-se ter maior liberdade de espaço para realizar o roteamento. Na sequência foi realizado o roteamento dos componentes do circuito da interface de usuário, que foram tomados por último para esse processo devido suas conexões possuírem uma baixa complexidade. 
 
-Em seguida, realizou-se o roteamento do circuito de alimentação com o processo sendo iniciado pelas conexões dos sub-circuitos de entrada de alimentação e de seleção da fonte de alimentação. Tendo sido feitas as conexões de todos os componentes desse circuito, foi então dado início ao processo de conectar os demais circuitos da placa à alimentação.
+
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:pcb_placement} Roteamento de sinais}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/pcb/pcb_signlas_route.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}
+
+
+
+Após esses circuitos, faz-se o roteamento do circuito de alimentação com o processo sendo iniciado pelas conexões dos sub-circuitos de entrada de alimentação e de seleção da fonte de alimentação. Tendo sido feitas as conexões de todos os componentes desse circuito, foi então dado início ao processo de conectar os demais circuitos da placa à alimentação.
 
 Procurou-se fazer que houvesse uma trilha de alimentação que alcançasse maioria dos componentes realizando um contorno no sentido anti-horário ao redor do centro da placa. Foi escolhido essa estratégia em detrimento da criação de múltiplas trilhas de alimentação saindo de um ponto comum, para evitar a criação de vários pequenos ciclos de corrente ao longo da placa, o que poderia gerar interferências eletromagnéticas não só entre os circuitos do hardware mas também com o ambiente externo. 
+    
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:pcb_placement} Roteamento de sinais e alimentação}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/pcb/pcb_with_power.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}
 
-Por fim foi realizado o roteamento dos componentes do circuito da interface de usuário, que foram tomados por último para esse processo devido suas conexões possuírem uma baixa complexidade. 
+
+% \newpage
+
+Por fim é feito a criação de planos de terra de forma que toda a placa, em ambas as faces, fique coberta por esses planos. Isso torna possível interligar todos os componentes ao terra de forma que esse ponto de ligação está o mais próximo possível do componente, o que evita que o caminho de retorno da corrente seja muito longo e acabe gerando interferências eletromagnéticas.
+
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:pcb_power_top} Plano de terra face superior}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/pcb/pcb_top_plane.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}
+
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:pcb_power_bottom} Plano de terra face inferior}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/pcb/pcb_bottom_plane.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}
+
+
+
+
+
+
+
+
+
 
 
 

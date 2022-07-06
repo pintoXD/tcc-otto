@@ -11,12 +11,50 @@
 
 % Citar exemplos de impressoras, micro-ondas, televisores e afins.
 
-Diferentemente de computadores pessoais, que possuem hardwares que podem ser reutilizados em outros dispositivos do mesmo tipo, um sistema embarcado possui um hardware projetado para atender os requisitos particulares de uma determinada aplicação na qual será utilizado, não podendo ser reutilizado em outras aplicações. Dessa forma, o hardware de um sistema embarcado projetado para realizar o controle de um forno micro-ondas não poder ser reutilizado para realizar o controle de uma impressora. 
+Um dispositivo \textit{datalogger} é um sistema embarcado que realiza que realiza leituras do ambiente em que está presente por meio de sensores e armazenando-as, durante um período de tempo variando de meses a anos, para que posteriormente sejam utilizadas para entender a dinâmica de um ambiente para, caso necessário, projetar uma possível intervenção nele.
 
-Embora seja possível criar um hardware que possa controlar tanto um forno micro-ondas quanto uma impressora doméstica, isso inviabilizaria financeiramente essas aplicações uma vez que seria preciso lidar não só com funcionalidades, mas também restrições diferentes entre cada uma.
-Dessa forma, essa característica, comum do hardware de sistemas embarcados, surge da necessidade de se atender a um conjunto particular de restrições que são criadas para viabilizar uma determinada aplicação.
+Os meios de se coletar essas leituras armazenadas para análise podem ser de maneira manual, em que um operador necessita ir ao ponto de instalação do \textit{datalogger} e com o auxílio de um computador pessoal acessar o dispositivo e realizar a coleta, ou pode ser de maneira automatizada por meio do envio das leituras via Wi-Fi ou Bluetooth para uma central de armazenamento de dados. Contudo, embora mais conveniente, um \textit{datalogger} que disponibilize esse método acaba tendo um preço unitário mais elevado do que um que utilize aquele. 
 
-O levantamento e análise dessas restrições são etapas essenciais no processo de desenvolvimento do hardware de um sistema embarcado. Esse processo será demonstrado nesse trabalho, que tem por objetivo desenvolver o hardware de um dispositivo \textit{datalogger} que possua funcionalidades e custo unitário que tornem viável, em relação aos dispositivos semelhantes que existem no mercado, sua produção e comercialização.
+Esse valor mais elevado pode acabar inviabilizando a aquisição de um \textit{datalogger} por parte de pequenos negócios. Diante disso, este trabalho propõe-se desenvolver os esquemáticos eletrônicos e leiaute da placa de circuito impresso do \textit{hardware} de um \textit{datalogger} de baixo custo que possa realizar medições de temperatura, umidade e luminosidade. Utilizando como base o módulo microcontrolador ESP32-S3-WROOM1, o \textit{datalogger} pode persistir os dados coletados em um cartão microSD, comunicar-se via Wi-Fi ou Bluetooth e ser alimentado diretamente ou por meio de um conjunto de pilhas AA. 
+
+
+
+
+
+
+
+
+
+
+
+% 
+
+
+
+
+% As leituras mais comuns para esse tipo de dispositivo são temperatura e umidade do ambiente, para garantir que, por exemplo, ambas não ultrapassem determinado limite e danifiquem produtos armazenados em um determinado local. 
+
+
+
+
+% Contudo, esse tipo dispositi
+
+
+
+
+
+
+% Um sistema embarcado é um sistema computacional que é construído com o propósito de atender as especificações da aplicação na qual será utilizado,
+
+
+
+
+% Diferentemente de computadores pessoais, que possuem hardwares que podem ser reutilizados em outros dispositivos do mesmo tipo, um sistema embarcado possui um hardware projetado para atender os requisitos particulares de uma determinada aplicação na qual será utilizado, não podendo ser reutilizado em outras aplicações.
+
+% Embora seja possível criar um hardware que possa controlar tanto um forno micro-ondas quanto uma impressora doméstica, isso inviabilizaria financeiramente essas aplicações uma vez que seria preciso lidar não só com funcionalidades, mas também restrições diferentes entre cada uma.
+% Dessa forma, essa característica, comum do hardware de sistemas embarcados, surge da necessidade de se atender a um conjunto particular de restrições que são criadas para viabilizar uma determinada aplicação.
+
+% O levantamento e análise dessas restrições são etapas essenciais no processo de desenvolvimento do hardware de um sistema embarcado. Esse processo será demonstrado nesse trabalho, que tem por objetivo desenvolver o hardware de um dispositivo \textit{datalogger} que possua funcionalidades e custo unitário que tornem viável, em relação aos dispositivos semelhantes que existem no mercado, sua produção e comercialização.
 
 
 
@@ -95,24 +133,26 @@ O levantamento e análise dessas restrições são etapas essenciais no processo
 
 \section{Objetivos}
 
-Esse trabalho objetiva-se a desenvolver o um dispositivo \textit{datalogger} para demonstrar o processo de desenvolvimento, e suas particularidades, de um hardware de sistema embarcados. Os objetivos específicos são os que seguem:
+Esse trabalho objetiva-se a desenvolver o esquemáticos eletrônicos e leiaute da placa de circuito impresso de um dispositivo \textit{datalogger} de baixo custo. Os objetivos específicos são os que seguem:
 
 \begin{itemize}
-    \item Elaborar um escopo de projeto para criação do hardware proposto;
-    \item Levantar especificações de projeto à partir do escopo criado;
-    \item Criar uma arquitetura de hardware que atenda as especificações levantadas;
+    \item Estudo de mercado;
+    \item Elaborar um escopo e criação das especificações do \textit{hardware}
+    \item Criar uma arquitetura de hardware que atenda as especificações criadas;
     \item Selecionar componentes e criar esquemáticos eletrônicos à partir da arquitetura criada;
-    \item Desenvolver uma placa de circuito impresso;
-    \item Realizar levantamento de custos de produção do hardware projetado;
+    \item Desenvolver uma \gls{PCI};
+    \item Mesuração dos custos de produção do \textit{hardware} projetado;
+    \item Definição da autonomia típica do \textit{hardware} projetado;
+    \item Comparativo entre o \textit{hardware} projetado e dispositivos similares no mercado.
     
 \end{itemize}
 
 
 \section{Estrutura do trabalho}
 
-O trabalho está estruturado de forma que o capítulo dois apresenta uma fundamentação teórica que aborda a definição de sistemas embarcados e \textit{dataloggers}. No capítulo três é apresentado e desenvolvido detalhadamente as etpadas do projeto do hardware proposto.
+O trabalho está estruturado de forma que o Capítulo 2 apresenta uma fundamentação teórica que aborda a definição de sistemas embarcados. No Capítulo 3 é apresentado e desenvolvido detalhadamente as etapas do projeto do hardware proposto.
 
-No capítulo quatro são feitas algumas considerações acerca do desempenho energético e custo de produção do hardware projetado. Por fim, o capítulo cinco apresenta propostas de melhorias e conclusões do trabalho desenvolvido.
+No Capítulo 4 são feitas algumas considerações acerca do desempenho energético e custo de produção do hardware projetado. Por fim, o capítulo cinco apresenta propostas de melhorias e conclusões do trabalho desenvolvido.
 
 
 

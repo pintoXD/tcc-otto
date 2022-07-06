@@ -3,13 +3,37 @@
 
 Nesse capítulo serão apresentados os custos de produção para o hardware projetado, autonomia alcançada quando do uso de baterias e estratégias de uso dos recursos disponíveis para se otimizar a autonomia atual do projeto.
 
+
+\section{Propriedades e design finais}
+
+O \textit{hardware} do \textit{datalogger} proposto possui a capacidade de realizar leituras de temperatura em uma faixa que vai de -20 ºC a 80 ºC, com uma precisão de $\pm$0,4 ºC. Há também a capacidade de leitura da umidade relativa do ambiente com uma precisão de $\pm$2\% em uma faixa de 0\% a 99\%. A luminosidade ambiente por sua vez possui um limite de medição que varia de 10 lux a 10.000 lux. 
+
+As medições realizadas com o auxílio desses sensores podem ser armazenadas tanto na memória \textit{Flash} do módulo microcontrolador quanto pode ser usado um cartão microSD de até 4 \textit{Gigabytes} para persistir esses dados. Também é possível realizar o envio periódico das leituras coletadas por meio de uma conexão Wi-Fi ou \textit{Bluetooth} com uma central de gerenciamento de dados. 
+
+Para operar, o \textit{datalogger} necessidade uma alimentação que pode variar de 3,3 V a 6,5 V e que pode ser fornecida seja por meio de alimentação direta, seja por meio de um conjunto de quatro pilhas AA. Além disso, o hardware produzido contou com o uso de 39 componentes conectados em circuitos desenhados em uma placa de circuito impresso de duas faces que com as dimensões finais de 51 x 53 mm. 
+
+    \begin{figure}[h!]
+            \captionsetup{width=10cm}
+    		\Caption{\label{fig:pcb_3d_view} Visualização 3D da placa desenvolvida}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.8\textwidth]{figuras/capitulo3/pcb/printd_3d_pcb.png}}
+    		}{
+    			\Fonte{elaborado pelo autor (2022).}
+    		}	
+   \end{figure}
+
+
+
+
+
 \section{Produção}
 
 Foi realizado o levantamento dos custos, desde listas de materiais a custos de importação do hardware projetado, para algumas determinadas quantidades a fim de determinar seu preço unitário final para o consumidor.
 
 \subsection{Lista de Materiais}
 
-Tendo sido realizado todo o desenvolvimento da placa, foi criado a \textit{bill of materials - BOM} (lista de materiais) do hardware final. Nessa lista, para cada componente, foi descrito a quantidade utilizada, seu preço unitário e o valor resultante para a quantidade necessária desse componente. À partir desses valores, é possível inferir qual o custo total de aquisição dos componentes necessários para a fabricação de uma unidade do hardware proposto. 
+Tendo sido realizado todo o desenvolvimento da placa, foi criado a \gls{BOM} do hardware final. Nessa lista, para cada componente, foi descrito a quantidade utilizada, seu preço unitário e o valor resultante para a quantidade necessária desse componente. À partir desses valores, é possível inferir qual o custo total de aquisição dos componentes necessários para a fabricação de uma unidade do hardware proposto. 
 
 Visando otimizar esse custo foi tomado como principal distribuidor de componentes eletrônicos a empresa LCSC Electronics, por conseguir oferecer os menores valores dentre os principais distribuidores de componentes eletrônicos do mercado. 
 
@@ -138,7 +162,7 @@ Devido a necessidade da fabricação no exterior, o processo de importação do 
 
 	\begin{table}[!h]
 	\captionsetup{width=10cm}%Deixe da mesma largura que a tabela
-	\Caption{\label{tab:custos_fabricacao} Custos de importação para o Brasil}
+	\Caption{\label{tab:custos_importacao} Custos de importação para o Brasil}
 	\IBGEtab{}{%
 		\begin{tabular}{ccccccccc}
 			\toprule
@@ -171,18 +195,7 @@ Devido a necessidade da fabricação no exterior, o processo de importação do 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-\section{Energia}
+\section{Energia}\label{sec:energia}
 
 A autonomia do uso da bateria no hardware proposto depende não só das funcionalidades de gerenciamento do consumo de energia oferecidas do módulo microcontrolador, como também de estratégias firmware que visem diminuir o consumo quando o hardware não estiver sendo totalmente utilizado. 
 
@@ -197,12 +210,12 @@ No circuito do cartão microSD, o consumo depende das operações de leitura e e
 Contudo se essa funcionalidade for utilizada e quando houver a necessidade de realizar novas operações, o processo de religamento do cartão microSD além do tempo mínimo de 250 milissegundos, é necessário também um consumo de no máximo 115 mA para que o cartão entre em estado de operação. 
 % Para auxiliar na redução desse consumo energético, o componente Q600 foi introduzido na linha de alimentação do suporte de leitura de cartões microSD. Esse componente é um transistor MOSFET de canal P que foi escolhido para operar nos modos de corte e saturação de forma que seja possível controlar quando o cartão deverá ser alimentado, eliminando assim o seu consumo em modo de espera restando assim somente o consumo quando da realização de operações de leitura e escrita.
 
-Para o circuito de controle foi necessário consultar a folha de dados do módulo microcontrolador, no qual a fabricante recomenda que haja um suprimento mínimo de 500mA de corrente para seu funcionamento, porém isso é necessário quando há o pleno funcionamento de todos os seus periféricos e dos rádios Wi-Fi e Bluetooth. Como o hardware proposto não fará uso de comunicação utilizando os rádios disponíveis, é possível configurar o módulo de forma a não usá-los e obter um consumo típico de 30 mA operando na frequência de 80 MHz. Junto a isso há ainda possibilidade de se escolher por meio de firmware um dos dois modos de operação de baixo consumo disponíveis, \textit{light-sleep} ou \textit{deep-sleep}. 
+Para o circuito de controle foi necessário consultar a folha de dados do módulo microcontrolador, no qual a fabricante recomenda que haja um suprimento mínimo de 500mA de corrente para seu funcionamento, porém isso é necessário quando há o pleno funcionamento de todos os seus periféricos e dos rádios Wi-Fi e Bluetooth. Como o hardware proposto não fará uso de comunicação utilizando os rádios disponíveis, é possível configurar o módulo de forma a não usá-los e obter um consumo típico de 30 mA operando na frequência de 80 MHz. Junto a isso há ainda a possibilidade de se escolher por meio de firmware um dos dois modos de operação de baixo consumo disponíveis, \textit{light-sleep} ou \textit{deep-sleep}. 
 
-Naquele, o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa. Nesse modo, de acordo com a folha de dados da fabricante é possível atingir um consumo de 240 $\mu$A. 
+No modo \textit{light-sleep}, o módulo microcontrolador reduz o clock de operação de sua CPU, memória RAM e periféricos, além de também reduzir a tensão de alimentação que lhes é fornecida, a operação de instruções na CPU é pausada em um determinado ponto e também há a opção de desativar totalmente alguns dos periféricos. O rádio Wi-Fi é capaz ainda de manter uma conexão ativa, sendo possível atingir, de acordo com a folha de dados da fabricante, um consumo de 240 $\mu$A. 
 % , contudo devido a características inerentes a construção do módulo e de  acordo com testes realizados pela fabricante, foi possível atingir um consumo médio de 1,3 mA em um contexto no o módulo alternava a cada 2 segundos entre esse modo e o modo de operação ativo. 
 
-No modo \textit{deep-sleep} a CPU e a maioria dos periféricos do hardware são desligados, permanecendo ativos somente seu co-processador de baixíssima potência (\textit{Ultra-Low-Power} - ULP), periféricos e memória RTC. Esse estado se mantém enquanto não houver um evento, à partir das fontes determinadas em documentação, que leve ao co-processador a despertar a CPU e seus demais periféricos. Dessa forma, segundo sua folha de dados, o consumo médio nesse modo é de 8$\mu$A.
+Já no modo \textit{deep-sleep} a CPU e a maioria dos periféricos do hardware são desligados, permanecendo ativos somente seu co-processador de baixíssima potência (\textit{Ultra-Low-Power (ULP)}, periféricos e memória RTC. Esse estado se mantém enquanto não houver um evento, à partir das fontes determinadas em documentação, que leve ao co-processador a despertar a CPU e seus demais periféricos. Dessa forma, segundo sua folha de dados, o consumo médio nesse modo é de 8$\mu$A.
 
 Assim, com base nos dados levantados, o consumo típico dos circuitos do hardware proposto, em miliampères, são resumidamente:
 
@@ -233,15 +246,167 @@ Assim, com base nos dados levantados, o consumo típico dos circuitos do hardwar
 
 % Em um cenário testado pela fabricante, no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante 9 milissegundos, foi obtido um consumo médio de 1,3 mA.
 
-Definir o tempo de autonomia real para o hardware proposto, depende de dados empíricos de consumo energético que não puderam ser levantados por não ter sido possível produzir unidades de teste desse hardware. Dessa forma, foi estimada uma autonomia com base nas especificações de consumo máximo dos componentes do hardware, descritos em suas folhas de dados e destacados na tabela \ref{tab:consumos_circuitos}. Assim, o consumo total do hardware proposto é de aproximadamente 190 mA quando houver sendo feito uso constante de todas as suas funcionalidades, possui uma autonomia típica de 13 h 9 min quando a alimentação for realizada por um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, o que está aquém das especificações do projeto. Para otimizar esse tempo, é necessário a adoção de algumas estratégias quando do desenvolvimento do firmware para esse hardware.
+Definir o tempo de autonomia real para o hardware proposto, depende de dados empíricos de consumo energético que não puderam ser levantados por não ter sido possível produzir unidades de teste desse hardware. Dessa forma, foi estimada uma autonomia com base nas especificações de consumo máximo dos componentes do hardware, descritos em suas folhas de dados e destacados na tabela \ref{tab:consumos_circuitos}. Assim, o consumo total inferido do hardware proposto é de aproximadamente 190 mA quando houver o uso constante de todas as suas funcionalidades, gerando uma autonomia típica de 13 h 9 min quando a alimentação for realizada por um conjunto de quatro pilhas AA em que cada possua uma capacidade de 2500 mAh, o que está aquém das especificações do projeto. Para otimizar esse tempo, é necessário a adoção de algumas estratégias quando do desenvolvimento do firmware para esse hardware.
 
 Reduzir o tempo de utilização do cartão microSD por meio da diminuição do número de operações de escrita no cartão, deve ser uma das primeiras estratégias a serem consideradas e que pode ser realizada por meio da acumulação dos dados lidos dos sensores na memória flash do módulo microcontrolador em blocos de dados que seriam gravados no cartão microSD somente quando atingissem um tamanho pré-determinado. Essa estratégia pode ser otimizada com a utilização do transistor da linha de alimentação do cartão, que permite seu desligamento completo, eliminando assim o consumo em estado de espera durante o período que não houver operações de gravação de dados. 
 
 A operação do módulo microcontrolador durante períodos maiores de tempo nos modos de operação com baixo consumo energético disponíveis, também se mostra como possível estratégia para economia energética. Em um cenário apresentado pela fabricante  no qual o módulo microcontrolador operou no modo \textit{light-sleep} durante dois segundos e em seguida foi alternado para o modo de operação ativo a 80 MHz durante nove milissegundos, foi obtido um consumo médio de 1,3 mA.
 
 
+\section{Comparativo de mercado}
+
+Para analisar quais os pontos fortes e quais devem ser trabalhados para viabilizar a comercialização no mercado do \textit{datalogger} proposto frente aos demais dispositivos já presentes, foi realizado uma comparação das propriedades do \textit{hardware} desenvolvido com as propriedades levantadas na seção \ref{sec:estudo_mercado} de dispositivos semelhantes presentes no mercado.
+
+% Foi realizado uma análise de mercado em que foram buscados dispositivos \textit{dataloggers} que realizam medições de temperatura e umidade, a fim de se realizar um comparativo entre esses dispositivos e o hardware proposto. Os dados levantados podem ser observados na tabela abaixo:
 
 
+\begin{table}[!h]
+	
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:compara_dimensoes} \textit{Comparativo: Dimensões e Autonomia}}%
+% 	\resizebox{\textwidth}{!}{
+	\IBGEtab{}{%
+		\begin{tabular}{cccc}
+			\toprule
+			Modelo & Dimensões & Nível de Proteção  & Autonomia \\
+			\midrule \midrule
+           RCW-360           & Não informado   & IP64/IP65 & 3 meses       \\
+           EL-WiFi-TH        & 82 x 70 x 23 mm & IP55  &6 meses       \\
+           TandD RTR-507B    & 62 x 47 x 19 mm & IP64  &10 meses      \\
+           160 TH            & 76 x 64 x 22 mm & IP20  & Não informado \\
+           Hardware Proposto & 51 x 53 x 25 mm & Não possui & 13h  \\
+	    \bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{Todos os dispositivos medem temperatura e umidade relativa do ambiente}%
+% 	\Nota[Legenda]{Na coluna de fabricantes, as letras representam os seguintes fabricantes\\
+% 	A = Display Visions\\
+% 	B = FLIR Extech\\
+% 	C = Lascar Electronics\\
+% 	D = O autor}%
+    }
+    % }
+\end{table}
+
+
+Como pode ser observado na tabela \ref{tab:compara_dimensoes}, as dimensões do \textit{datalogger} proposto são menores que as dos demais dispositivo, porém enquanto esses já possuem um invólucro que lhes confere o fator de proteção contra intempéries presente em cada um, já o dispositivo proposto não possui tal invólucro no projeto, o que leva a um aumento do seu custo unitário final. 
+
+Outro ponto a se comparar é a autonomia dos itens em análise. Enquanto os dispositivos presentes no mercado possuem autonomia na casa de meses, o \textit{datalogger} proposto possui um autonomia de apenas 13 horas de acordo com dados de consumo levantados na seção \ref{sec:energia}. Contudo, o tempo de autonomia fornecido pelas fabricantes desses dispositivos é estimado com base em condições específicas de utilização, as quais muitas vezes não se refletem na realidade, podendo causar uma alteração nesse tempo previsto. Dessa forma, ainda que o \textit{datalogger} proposto tenha um tempo de autonomia bem menor que os demais em análise, é importante ressaltar que não foi possível realizar os testes necessários para se estimar uma autonomia corretamente. 
+
+% A autonomia e a temperatura de operação também são outras propriedades que não puderam ser totalmente levantadas para o \textit{hardware} proposto por serem dados que demandam testes com o dispositivo produzido para serem levantados. 
+\begin{table}[!h]
+	
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:compara_precisao} \textit{Comparativo: Faixa de leitura e Precisão}}%
+% 	\resizebox{\textwidth}{!}{
+	\IBGEtab{}{%
+		\begin{tabular}{ccccccc}
+			\toprule
+			Modelo & Faixa de Leitura (ºC) & Precisão (ºC) & Umidade Relativa (\%) & Precisão(\%)\\
+			\midrule \midrule
+           RCW-360           & -35 a 80      & 0,5 & 0 a 99 & 5    \\
+           EL-WiFi-TH        & -20 a 60      & 0,3 & 0 a 100 & 2    \\
+           TandD RTR-507B    & -25 a 70      & 0,3 & 0 a 99  & 2,50 \\
+           160 TH            & -30 a 50      & 0,1 & 0 a 100 & 2 \\
+           Hardware Proposto & -20 a 85      & 0,4 & 0 a 100 & 2\\
+	    \bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+% 	\Nota{Todos os dispositivos medem temperatura e umidade relativa do ambiente}%
+% 	\Nota[Legenda]{Na coluna de fabricantes, as letras representam os seguintes fabricantes\\
+% 	A = Display Visions\\
+% 	B = FLIR Extech\\
+% 	C = Lascar Electronics\\
+% 	D = O autor}%
+    }
+    % }
+    \end{table}
+
+Em relação a precisão e faixas de leitura possíveis, de acordo com a tabela \ref{tab:compara_precisao} o \textit{datalogger} proposto se mostra em relação aos demais dispositivos em análise. Tanto suas faixas de leitura de temperatura e umidade, quanto a precisão dessas leituras se mostra semelhante a de \textit{dataloggers} comerciais. Entretanto vale ressaltar que os valores obtidos e postos para comparação são valores obtidos da folha de dados do sensor de temperatura e umidade, sendo necessário ainda a realização de testes para validação dessas faixas de leituras e precisões levantadas. 
+\newpage
+\begin{table}[!h]
+	
+	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\Caption{\label{tab:compara_custo} \textit{Comparativo: Faixa de leitura e Precisão}}%
+% 	\resizebox{\textwidth}{!}{
+	\IBGEtab{}{%
+		\begin{tabular}{ccccccc}
+			\toprule
+			Modelo & Valor (R\$)\\
+			\midrule \midrule
+           RCW-360           & 1.499,00  \\
+           EL-WiFi-TH        & 1.305,14  \\
+           TandD RTR-507B    & 2.242,57 \\
+           160 TH            & 2.842,00  \\
+           Hardware Proposto & 82,40  \\
+	    \bottomrule
+		\end{tabular}%
+	}{%
+	\Fonte{o autor.}%
+	\Nota{Foi utilizado o valor unitário para a fabricação de 50 unidades do \textit{datalogger} proposto}%
+% 	\Nota[Legenda]{Na coluna de fabricantes, as letras representam os seguintes fabricantes\\
+% 	A = Display Visions\\
+% 	B = FLIR Extech\\
+% 	C = Lascar Electronics\\
+% 	D = O autor}%
+    }
+    % }
+    \end{table}
+
+O custo também, segundo a tabela \ref{tab:compara_custo}, se mostrou competitivo em relação a produtos semelhantes no mercado, mesmo sendo produzidos somente 50 unidades. Contudo, vale ressaltar que esse valor apresentado refere-se somente ao custo de produção e importação do \textit{hardware} proposto, sendo necessário ainda levantar os seguintes custos para se adicionar ao valor final unitário do dispositivo:
+
+\begin{itemize}
+    \item Desenvolvimento de firmware;
+    \item Criação de invólucro resistente determinadas intempéries;
+    \item Testes de funcionamento;
+    \item Homologação junto a Agência Nacional de Telecomunicações (ANATEL);
+    \item Homologação junto ao Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO);
+    
+\end{itemize}
+
+
+
+
+% Para comparar o valor unitário do \textit{hardware} proposto com o valor dos demais dispositivos, foi utilizado o custo referente a produção e importação de 50 unidades descrito na tabela \ref{tab:custos_importacao}. Mesmo para a produção de um pequeno volume de unidades, o valor unitário do \textit{hardware} proposto se saiu menor do que o valor dos demais dispositivos. Contudo é importante ressaltar que enquanto os dispositivos selecionados para o comparativo já possuem um \textit{software}, ainda não há o mesmo para \textit{hardware} proposto o que leva a uma elevação do seu valor unitário devido o custo gerado para realizar o desenvolvimento desse \textit{software}. 
+
+
+
+
+
+% 	\begin{table}[!h]
+	
+% 	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+% 	\Caption{\label{tab:compara_devices} Comparativo de valores}%
+% 	\resizebox{\textwidth}{!}{
+% 	\IBGEtab{}{%
+% 		\begin{tabular}{cccccc}
+% 			\toprule
+% 			Modelo & Fabricante & Valor Unitário & Dimensões & Autonomia & Faixa de Operação (ºC) \\
+% 			\midrule \midrule
+%             EA SYLOG-USB-2 & A    & R\$ 507,77   & 108 x 25 x 22mm       & 3 anos        & -35 a 80 \\
+%             RHT10          & B        & R\$ 506,14   & 130 x 30 x 25mm       & 1 ano         & -40 a 70 \\
+%             42280          & B        & R\$ 1.293,54 & 120.7 x 88.9 x 38.1mm & Não informado & -40 a 70 \\
+%             EL-SIE-2       & C & R\$ 567,13   & 93 x 42 x 17mm        & 1 ano         & -18 a 55 \\
+%             EL-SIE-6+      & C & R\$ 1.061,61 & 93 x 42 x 17mm        & 1 ano         & -18 a 55 \\
+%             HW Proposto    & D & R\$82,40     & 51 x 53 x 30mm        & Não informado &  Não informado 
+%             \\
+% 		    \bottomrule
+% 		\end{tabular}%
+% 	}{%
+% 	\Fonte{o autor.}%
+% 	\Nota{Todos os dispositivos medem temperatura e umidade relativa do ambiente}%
+% 	\Nota[Legenda]{Na coluna de fabricantes, as letras representam os seguintes fabricantes\\
+% 	A = Display Visions\\
+% 	B = FLIR Extech\\
+% 	C = Lascar Electronics\\
+% 	D = O autor}%
+%     }
+%     }
+%     \end{table}
+    
+    
 
 
 
