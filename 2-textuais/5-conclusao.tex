@@ -1,6 +1,54 @@
 \chapter{Conclusões e Trabalhos Futuros}
 \label{chap:conclusoes-e-trabalhos-futuros}
 
+Dispositivos \textit{dataloggers} são ferramentas bastante úteis para monitorar e auxiliar na manutenção da dinâmica de um ambiente. Contudo, \textit{dataloggers} que permitam recuperar os dados armazenados de maneira automatizada, via \textit{Wi-Fi} ou \textit{Bluetooth}, tem um valor por unidade muito elevado em relação aos que não possuem essa propriedade.
+
+Nesse contexto, o presente trabalho teve como objetivo a criação um \textit{datalogger} de baixo custo que possua interfaces de comunicação \textit{Wi-Fi} e \textit{Bluetooth}. Foi realizada uma análise de mercado e, a partir dela, foi feita uma seleção de componentes, a criação de esquemáticos e do leiaute da \gls{PCI} de um \textit{datalogger} que monitora temperatura e umidade e utiliza como base o módulo microcontrolador ESP32-S3-WROOM1 e o sensor HDC1080.
+
+A partir disso foi possível não só realizar um análise dos custos de fabricação e montagem do \textit{hardware} do \textit{datalogger} proposto, como também foi possível estimar o consumo do dispositivo quando operando tanto em um modo ativo, no qual são feitas medições e armazenamento de dados, quanto em um modo de sono profundo.
+
+Os resultados apresentados estão de acordo com os objetivos definidos para este trabalho, demonstrando que o \textit{datalogger} proposto se mostra uma alternativa viável a dispositivos semelhantes presentes no mercado. Em termos de custo, mesmo sendo utilizado valores superestimados para o desenvolvimento de um \textit{firwmare} para o \textit{hardware} criado e a seleção de um invólucro ideal para proteção, o \textit{datalogger} proposto apresentou um valor unitário inferior ao valor de dispositivos com configurações semelhantes presentes no mercado. O consumo energético estimado também se mostrou competitivo nesse contexto porque definiu um tempo de autonomia que, embora não tenha sido o maior dentre alguns dispositivos analisados, torna viável sua operação utilizando pilhas AA comuns.
+
+Dessa forma, como trabalhos futuros sugere-se a criação de um \textit{firmware} que faça uso tanto das funcionalidades de baixo consumo que o módulo microcontrolador oferece, quanto de alguns circuitos que o \textit{hardware} do \textit{datalogger} proposto possui que foram projetados para auxiliar no gerenciamento do seu consumo energético. Uma vez que esse \textit{firwmare} esteja desenvolvido, sugere-se também a realização de testes para se determinar com maior precisão o consumo energético do \textit{hardware} projetado, assim como do seu tempo de autonomia quando do uso de baterias, em situações de utilização que se aproximem da realidade.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Assim, mesmo com o objetivo de 
+
+
+
+% Assim, foi realizado uma avaliação de mercado para conhecer as propriedades dos \textit{dataloggers} disponíveis e definir um escopo para o projeto do dispositivo.
+
+% Foi criado então uma arquitetura de hardware com base no módulo microcontrolador ESP32-S3-WROOM1, adotado por possuir interfaces Wi-Fi e \textit{Bluetooth} além de 
+
+
+
+
+
+% À partir disso foram definidos as especificações técnicas e criou-se uma arquitetura de hardware para o \textit{datalogger} proposto que permitiu a seleção dos componentes eletrônicos que fariam parte do dispositivo. Com isso, foram criados esquemáticos eletrônicos e o leiaute de uma placa de circuito impresso. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\if{0}
 Esse trabalho teve por objetivo apresentar o processo de desenvolvimento de um a hardware embarcado, desde sua concepção até sua produção, apresentando as particularidades técnicas envolvidas e fatores externos que podem afetar no projeto final do hardware. 
 
 Contudo, por não ter sido possível produzir a placa para efetuar testes de funcionalidade e desempenho, não foi possível também assim mensurar o consumo energético real do hardware, bem como não também foi possível definir um tempo de autonomia aproximado quando do uso de pilhas.
@@ -14,6 +62,8 @@ Assim, para trabalhos futuros pretende-se o seguinte:
     \item Desenvolver um pacote de firmwares que exemplifiquem como usar cada componente presente no hardware.
 \end{itemize}
 
+
+\fi
 
 
 

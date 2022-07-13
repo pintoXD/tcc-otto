@@ -7,27 +7,27 @@
 
 
 
-\section{Estudo de mercado}\label{sec:estudo_mercado}
+\section{Análise de tecnologias de produtos existentes}\label{sec:estudo_mercado}
 
 
 % Um \textit{datalogger} é um dispositivo de funcionamento autônomo, que conta com sensores, memória interna e é capaz de realizar e disponibilizar a leitura de uma ou mais variáveis do ambiente e armazená-lo por um determinado período de tempo que pode ser de dias, meses ou até anos. 
 
 
-Em busca de compreender propriedades como preço, dimensões e precisão de medição dos \textit{dataloggers} existentes no mercado atualmente, realizou-se um estudo no qual foi buscado quais dispositivos realizam a leitura de temperatura e umidade, possuem comunicação Wi-Fi ou Bluetooth e possuem uma opção de alimentação por bateria. Os dispositivos encontrados que atendem as especificações da pesquisa, que estão listados na tabela \ref{tab:dataloggers_novos}. 
+Em busca de compreender propriedades como preço, dimensões e precisão de medição dos \textit{dataloggers} existentes no mercado atualmente, realizou-se um estudo no qual foram buscados quais dispositivos realizam a leitura de temperatura e umidade, possuam comunicação sem fio e contem com uma opção de alimentação por bateria. Os dispositivos encontrados que atendem as especificações da pesquisa, que estão listados na Tabela \ref{tab:dataloggers_novos}. 
 	\begin{table}[!h]
 	
-	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
+	\captionsetup{width=8cm}%Deixe da mesma largura que a tabela
 	\Caption{\label{tab:dataloggers_novos} \textit{Dataloggers: Preços e Mercados}}%
 % 	\resizebox{\textwidth}{!}{
 	\IBGEtab{}{%
-		\begin{tabular}{ccccc}
+		\begin{tabular}{cccccc}
 			\toprule
-			Modelo & Fabricante & Preço (R\$) & Mercado & Nível de Proteção \\
+			Modelo & Fabricante & Preço (R\$) & Mercado & Nível de Proteção & Interface sem Fio \\
 			\midrule \midrule
-            RCW-360        & Elitech            &  1.499,00 & Nacional    & IP64/IP65 \\
-            EL-WiFi-TH     & Lascar Electronics &  1.305,14 & Estrangeiro & IP55      \\
-            TandD RTR-507B & TandD              &  2.242,57 & Estrangeiro & IP64      \\
-            160 TH         & testo              &  2.842,00 & Nacional    & IP20
+            RCW-360        & Elitech            &  1.499,00 & Nacional    & IP64/IP65 & WiFi \\
+            EL-WiFi-TH     & Lascar Electronics &  1.305,14 & Estrangeiro & IP55  & WiFi    \\
+            TandD RTR-507B & TandD              &  2.242,57 & Estrangeiro & IP64  & Interface Própria    \\
+            160 TH         & testo              &  2.842,00 & Nacional    & IP20 & WiFi
             \\
 		    \bottomrule
 		\end{tabular}%
@@ -50,7 +50,7 @@ Houve a necessidade de fazer essa busca no mercado no estrangeiro, dessa forma o
 	
 	\captionsetup{width=7cm}%Deixe da mesma largura que a tabela
 	\Caption{\label{tab:dataloggers_novos_propriedades} \textit{Dataloggers: Propriedades}}%
-	\resizebox{\linewidth}{!}{
+	\resizebox{\textwidth}{!}{
 	\IBGEtab{}{%
 		\begin{tabular}{ccccccc}
 			\toprule
@@ -75,23 +75,23 @@ Houve a necessidade de fazer essa busca no mercado no estrangeiro, dessa forma o
     }
     \end{table}
 
-A tabela \ref{tab:dataloggers_novos_propriedades} descreve quais algumas propriedades dos \textit{dataloggers} encontrados na busca, mas que são usadas como objetivo a ser alcançado no desenvolvimento do dispositivo proposto.
+A Tabela \ref{tab:dataloggers_novos_propriedades} descreve quais algumas propriedades dos \textit{dataloggers} encontrados na busca, mas que são usadas como objetivo a ser alcançado no desenvolvimento do dispositivo proposto.
 
 
 \section{Escopo de projeto}
 
 
-% Definir o escopo do projeto foi o ponto de partida do desenvolvimento do dispositivo datalogger. Para isso, foi então definido que deveria ser desenvolvido um datalogger que fosse capaz de ler, persistir e disponibilizar os dados coletados à partir da leitura da temperatura, umidade relativa e luminosidade do ambiente em que ele esteja instalado. 
+% Definir o escopo do projeto foi o ponto de partida do desenvolvimento do dispositivo datalogger. Para isso, foi então definido que deveria ser desenvolvido um datalogger que fosse capaz de ler, persistir e disponibilizar os dados coletados a partir da leitura da temperatura, umidade relativa e luminosidade do ambiente em que ele esteja instalado. 
 
 % A persistência dos dados coletados deve idealmente ser feita em uma mídia que removível que pudesse manter os dados armazenados por um longo período de tempo e que também seja capaz de suportar temperaturas um maiores que a temperatura ambiente. Além disso, os dados devem ser escritos de forma que seja facilitada a importação deles para ferramentas de visualização de dados. 
 
-A ideia principal do projeto é desenvolver um datalogger de baixo custo de aquisição, dado suas características técnicas e deve ser um dispositivo capaz de ler temperatura, umidade relativa e luminosidade do ambiente em que ele estiver instalado. 
+A ideia principal do projeto é desenvolver um \textit{datalogger} de baixo custo que seja capaz de ler temperatura, umidade relativa e luminosidade de um ambiente em que ele estiver instalado. Deve ser possível que essas leituras sejam realizadas periodicamente de forma que o intervalo mínimo entre cada possa estar na casa dos segundos e devem ser armazenadas em uma mídia de armazenamento de massa removível para facilitar o resgate dessas informações posteriormente. Esse resgate deve ser possível de se realizar também de forma automatizada, por meio do envio dos dados coletados para uma central de processamento de informações utilizando uma conexão Wi-Fi. Os dados coletadas devem ser armazenados por um período de tempo mínimo de 45 dias. 
 
-Essas leituras devem ser realizadas periodicamente de forma que o intervalo mínimo entre cada possa estar na casa dos segundos, se possível, e devem ser armazenadas em uma mídia de armazenamento de massa removível. Essa mídia deve manter os dados guardados por um período de tempo  de pelo menos 45 dias e suportar variações de temperaturas ligeiramente maiores ou menores que a temperatura média do local de instalação.
+
 
 \section{Levantamento das especificações técnicas do hardware}
 
-Realizando a análise do escopo definido, foram então levantadas as especificações que o hardware proposto deve atender. À partir dessas especificações será então criado uma arquitetura para o hardware, que elencará quais componentes, protocolos e afins deverão ser adotados.
+Realizando a análise do escopo definido, foram então levantadas as especificações que o hardware proposto deve atender. A partir dessas especificações será então criado uma arquitetura para o hardware, que elencará quais componentes, protocolos e afins deverão ser adotados.
 
     \begin{enumerate}
         \item Possuir a capacidade de ler a temperatura do ambiente;
@@ -99,14 +99,14 @@ Realizando a análise do escopo definido, foram então levantadas as especifica�
         \item Possuir a capacidade de ler o nível de luminosidade do ambiente;
         \item Possuir alternativa de alimentação direta ou via bateria;
         \item Leitura de sensores via interfaces \gls{I2C}, \gls{SPI} e/ou \gls{UART};
-        \item Formatação dos dados lidos dos sensores para auxiliar no envio e/ou coleta;
-        \item Persistir os dados em um cartão SD para a coleta manual dos dados;
+        % \item Formatação dos dados lidos dos sensores para auxiliar no envio e/ou coleta;
+        \item Persistir os dados em um cartão SD para facilitar a recuperação manual dos dados coletados;
         \item Persistência dos dados coletados por no mínimo 45 dias;
         % \item Interface de comunicação via rádio LoRa;
         % \item Envio periódico dos dados guardados via LoRaWan;
         \item Possuir interface de interação com o usuário;
-        \item Permitir a configuração da taxa de amostragem das variáveis lidas;
-        % \item Permitir o envio de dados coletados via interface de comunicação sem fio;
+        % \item Permitir a configuração da taxa de amostragem das variáveis lidas;
+        \item Permitir o envio de dados coletados via interface de comunicação sem fio;
         % \item Permitir o recebimento e aplicação de configurações via interface de comunicação sem fio;
         % \item (Ideia pra placa: Deixar uma interface pra gravação do firwmare)
         % \item Possuir proteção contra intempéries;
@@ -122,13 +122,13 @@ Realizando a análise do escopo definido, foram então levantadas as especifica�
 
 \section{Definição da arquitetura de hardware}
 
-Tendo sido levantados as especificações do projeto, esses são analisados a fim de se criar uma arquitetura de hardware do projeto. Fazem parte dessa arquitetura o diagrama de blocos do hardware proposto, que irá nortear a definição de que quais componentes que serão necessários para a construção do dispositivo. 
+Tendo sido levantadas as especificações do projeto, essas são analisadas a fim de se criar uma arquitetura de hardware do projeto. Fazem parte dessa arquitetura o diagrama de blocos do hardware proposto, com o propósito de nortear a definição de que quais componentes que serão necessários para a construção do dispositivo. 
 
-Junto ao levantamento dos componentes, também são elencado quais propriedades eles deverão possuir para que as especificações do projeto sejam atendidos. Uma vez que isso seja feito, é então dado início a seleção desses componentes no mercado de componentes eletrônicos de acordo com o especificado na etapa anterior de levantamento de componentes.
+Junto ao levantamento dos componentes, também são elencadas quais propriedades eles deverão possuir para que as especificações do projeto sejam atendidas. Uma vez que isso seja feito, é então dado início a seleção desses componentes no mercado de componentes eletrônicos de acordo com o especificado na etapa anterior.
 
 \subsection{Diagrama de blocos}
 
-No diagrama de blocos do dispositivo datalogger proposto, cada bloco é um objeto que representa um componente que deve fazer parte da do hardware. Além disso, são também elencados as interfaces de comunicação, se necessário, que cada objeto deverá ter com outros objetos. 
+No diagrama de blocos do dispositivo \textit{datalogger} proposto, cada bloco é um objeto que representa um componente que deve fazer parte do hardware. Além disso, são também elencadas as interfaces de comunicação, se necessário, que cada objeto deverá ter com outros objetos. 
 
 Analisando as especificações técnicas são definidos quais objetos deverão compor  o hardware. Alguns desses objetos podem ser compostos de objetos menores, dependendo do nível de complexidade que eles apresentam. Assim, o seguintes objetos são definidos:
 
@@ -143,10 +143,10 @@ Analisando as especificações técnicas são definidos quais objetos deverão c
      \item Unidade de leitura e escrita de dados em cartão SD;
  \end{itemize}
 
-À partir da definição dos objetos, é então elaborado o diagrama de blocos do dispositivo a ser desenvolvido. O diagrama deste projeto segue abaixo.
+A partir da definição dos objetos, é então elaborado o diagrama de blocos do dispositivo a ser desenvolvido. O diagrama deste projeto é apresentado na Figura \ref{fig:datalogger_blocks}.
 
     \begin{figure}[h!]
-            \captionsetup{width=16cm}
+            \captionsetup{width=9cm}
     		\Caption{\label{fig:datalogger_blocks} Diagrama de Blocos do datalogger}
     		%\centering
     		\UFCfig{}{
@@ -155,19 +155,20 @@ Analisando as especificações técnicas são definidos quais objetos deverão c
     			\Fonte{elaborado pelo autor (2022).}
     		}	
    \end{figure}
-
+\newpage
 \subsection{Levantamento de tipos de componentes}\label{subsec:levantamento_tipos}
 
 
-Uma vez que se tenha o diagrama de blocos criado, é dado início ao processo de seleção de componentes. Nesta etapa são analisados as especificações técnicas e o diagrama de blocos do projeto a fim de se levantar quais componentes e quais propriedades esses componentes devem possuir para serem considerados ideais para o desenvolvimento do hardware. 
+Uma vez que se tenha o diagrama de blocos criado, é dado início ao processo de seleção de componentes. Nesta etapa são analisados as especificações técnicas e o diagrama de blocos do projeto a fim de se levantar os componentes e quais propriedades eles devem possuir para serem considerados ideais para o desenvolvimento do hardware. 
 
-Assim, para cada objeto do diagrama foram levantado quais tipos de componentes fazem parte da definição desse objeto, com o objetivo de orientar a procura e escolha dos componentes eletrônicos nos distribuidores. Os tipos de componentes levantados seguem abaixo: 
+Assim, para cada objeto do diagrama foram levantados quais tipos de componentes fazem parte da definição desse objeto, com o objetivo de orientar a procura e escolha dos componentes eletrônicos nos distribuidores. Os tipos de componentes levantados seguem abaixo: 
 
 \begin{itemize}
  
  \item Unidade de processamento
      \begin{itemize}
-         \item Microcontrolador que opere em 3V3 e possua interfaces de comunicação \gls{I2C}, \gls{SPI} e \gls{UART};
+         \item Microcontrolador que possua interfaces de comunicação \gls{I2C}, \gls{SPI} e \gls{UART};
+         \item Desejável que suporte alimentação de 3,3 V.
      \end{itemize}
 
  \item Sensores de umidade, temperatura e luminosidade; 
@@ -195,25 +196,25 @@ Assim, para cada objeto do diagrama foram levantado quais tipos de componentes f
  
  \item Unidade de leitura e escrita de dados em cartão SD;
      \begin{itemize}
-         \item Suporte de leitura de cartão microSD;
+         \item Suporte de leitura de cartão \textit{microSD};
      \end{itemize}
  %Acho que aqui é melhor fazer uma análise dos requisitos e ir comentando qual componente atende aos requisitos X e Y.
 \end{itemize}
 
 \subsection{Recomendações para seleção de componentes}\label{subsec:recomendacoes_componentes}
 
-Tendo sido levantado quais os tipos de componentes devem fazer parte da construção do hardware proposto, é preciso dar início ao processo escolha dos componentes no mercado de componentes eletrônicos. Contudo, algumas recomendações devem ser feitas antes que essa fase do projeto seja iniciada a fim de se evitar custos adicionais seja durante a fase de desenvolvimento, seja na fase de produção do hardware desenvolvido. 
+Tendo sido levantado quais os tipos de componentes devem fazer parte da construção do hardware proposto, é preciso dar início ao processo escolha dos componentes no mercado de componentes eletrônicos. Contudo, algumas recomendações devem ser feitas antes que essa fase do projeto seja iniciada a fim de se evitar custos adicionais, seja durante a fase de desenvolvimento, seja na fase de produção do hardware desenvolvido. 
 
-Assim, como primeira recomendação pode ser destacado a escolha de componentes ativos como microcontroladores, \gls{ASIC}s ou semelhantes, que estejam com produção ativa e que tenham um tempo de vida útil garantida pela fabricante de pelo menos 10 anos à partir da data em que projeto inicia sua fase de produção. Essa recomendação visa garantir a longevidade do dispositivo desenvolvido, visto que quando há a descontinuidade de produção ou falta desse tipo de componente no mercado, isso gera um custo extra ao fabricante que se desejar manter seu hardware sendo produzido vai ou precisar adquirir e manter um estoque próprio desses componentes, ou arcar com os custos extras de retrabalho do seu hardware para substituir o componente que está em falta por um equivalente. 
+Assim, como primeira recomendação pode ser destacada a escolha de componentes ativos como microcontroladores, \gls{ASIC}s ou semelhantes, que estejam com produção ativa e que tenham um longo suporte de ciclo de vida garantida pela fabricante de pelo menos 10 anos a partir da data em que projeto inicia sua fase de produção. Essa recomendação visa garantir a longevidade do dispositivo desenvolvido, visto que, quando há a descontinuidade de produção ou falta desse tipo de componente no mercado, o que gera custos extras ao fabricante, que se desejar manter seu hardware sendo produzido, precisará ou adquirir e manter um estoque próprio desses componentes, ou arcar com os custos extras de retrabalho do seu hardware para substituir o componente que está em falta por um equivalente. 
 
-Já para componentes passivos, como resistores, capacitores e afins, é preciso um cuidado semelhante uma vez que também há problema de descontinuidade da produção para esse tipo de componente pelos seus fabricantes. Contudo o processo de substituição por um componente equivalente é mais simples uma vez que um componente com as mesmas propriedades do escolhido inicialmente podem ser produzidos por mais de um fabricante. 
+Para componentes passivos, como resistores, capacitores e afins, é preciso um cuidado semelhante, uma vez que também há problema de descontinuidade da produção para esse tipo de componente pelos seus fabricantes. Contudo, o processo de substituição por um componente equivalente é mais simples uma vez que um componente com as mesmas propriedades do escolhido inicialmente podem ser produzidos por mais de um fabricante. 
 
-Dessa forma, visando aproveitar essa característica dos componentes passivos é recomendado que no momento da seleção desses componentes sejam escolhidos os que possuam propriedades comuns de serem encontradas no mercado de componentes eletrônicos. Por exemplo, no caso da seleção de um capacitor eletrolítico de montagem em superfície, é recomendado que as principais propriedades, capacitância, dimensões físicas e tensão de operação sejam comuns de serem encontradas no mercado. Do contrário, se um capacitor possuir dimensões físicas que somente alguns fabricantes produzem, isso pode levar a um custo extra na produção de um hardware, devido a necessidade se realizar um retrabalho nele para que um capacitor com dimensões diferentes do componente inicialmente utilizado possa ser adotado como substituto. 
+Dessa forma, visando aproveitar essa característica dos componentes passivos, é recomendado que, no momento da seleção desses componentes, sejam escolhidos os que possuam propriedades comuns de serem encontradas no mercado de componentes eletrônicos. Por exemplo, no caso da seleção de um capacitor eletrolítico de montagem em superfície, é recomendado que as principais propriedades, capacitância, dimensões físicas e tensão de operação sejam comuns de serem encontradas no mercado. Do contrário, se um capacitor possuir dimensões físicas que somente alguns fabricantes produzem, isso pode levar a um custo extra na produção de um hardware, devido a necessidade se realizar um retrabalho nele para que um capacitor com dimensões diferentes do componente inicialmente utilizado possa ser adotado como substituto. 
 
-%   Os componentes ativos (CIs e afins) devem estar em produção ativa e possuir um fim de vida no mercado de pelo menos 10 anos no futuro à partir da data de escolha deles;
+%   Os componentes ativos (CIs e afins) devem estar em produção ativa e possuir um fim de vida no mercado de pelo menos 10 anos no futuro a partir da data de escolha deles;
 \subsection{Seleção de componentes eletrônicos}
 
-Nessa etapa do projeto são buscados em distribuidores de componentes eletrônicos os que melhor se encaixam nas especificações técnicas do hardware proposto, assim, para cada um dos tipos de componentes levantados na subseção \ref{subsec:levantamento_tipos} essa busca será realizada. 
+Nessa etapa do projeto são buscados em distribuidores de componentes eletrônicos os que melhor se encaixam nas especificações técnicas do hardware proposto. Assim, para cada um dos tipos de componentes levantados na subseção \ref{subsec:levantamento_tipos} essa busca será realizada. 
 
 % Contudo, devido a grande quantidade desses distribuidores no mercado de componentes eletrônicos, a busca desses componentes foi restringida a somente alguns desses distribuidores que são elencados abaixo:
 
@@ -233,11 +234,11 @@ Nessa etapa do projeto são buscados em distribuidores de componentes eletrônic
 \subsubsection{Microcontrolador}\label{subsubsec:esp32_modulo}
 
 
-Para a escolha desse componente em um primeiro momento foram analisadas as especificações do projeto e levantadas algumas características que o microcontrolador ideal para o hardware proposto deveria possuir. A primeira dessas características é a presença dos periféricos \gls{UART}, \gls{SPI} e \gls{I2C} no componente escolhido devido a necessidade de comunicação com os sensores ou a mídia removível usando um desses protocolos.
+Para a escolha desse componente, em um primeiro momento foram analisadas as especificações do projeto e levantadas algumas características que o microcontrolador ideal para o hardware proposto deveria possuir. A primeira dessas características é a presença dos periféricos \gls{UART}, \gls{SPI} e \gls{I2C} no componente escolhido devido a necessidade de comunicação com os sensores ou a mídia removível usando um desses protocolos.
 
 Foi observado também a necessidade do microcontrolador ter um baixo consumo energético durante sua operação, de forma que seja possível manter o dispositivo funcionando ininterruptamente por 45 dias com uma alimentação provinda de um conjunto de pilhas. Por conta disso no momento da seleção, além dessa característica, foi buscado um microcontrolador que possuísse também um modo de operação em hibernação, no qual o microcontrolador mantém energizado somente seus periféricos essenciais para diminuir o consumo energético ao máximo. 
 
-Tendo sido feitas essas considerações, foi então escolhido o módulo microcontrolador da Espressif Systems, ESP32-S3-WROOM-1-N8, que é formado pela associação do \gls{SOC} ESP32-S3 com uma memória \textit{Flash} \gls{SPI}. Algumas das propriedades desse módulo são:
+Tendo sido feitas essas considerações, foi então escolhido o módulo microcontrolador da Espressif Systems, ESP32-S3-WROOM-1-N8, cujo diagrama de blocos é apresentado na Figura \ref{fig:datalogger_blocks}, formado pela associação do \gls{SOC} ESP32-S3 com uma memória \textit{Flash} \gls{SPI}. Algumas das propriedades desse módulo são:
 
     \begin{itemize}
         \item Quantidade de portas de Entradas/Saída: 36;
@@ -250,32 +251,46 @@ Tendo sido feitas essas considerações, foi então escolhido o módulo microcon
     \end{itemize}
     
     
-    \begin{figure}[h!]
-            \captionsetup{width=16cm}
-    		\Caption{\label{fig:datalogger_blocks} Diagrama de Blocos do \gls{SOC} ESP32-S3}
-    		%\centering
-    		\UFCfig{}{
-    			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esp32-s3_datasheet_en-02.jpg}}
-    		}{
-    			\Fonte{Espressif Systems (2022).}
-    		}	
-   \end{figure}    
+%     \begin{figure}[h!]
+%             \captionsetup{width=16cm}
+%     		\Caption{\label{fig:esp32_blocks} Diagrama de Blocos do \gls{SOC} ESP32-S3}
+%     		%\centering
+%     		\UFCfig{}{
+%     			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esp32-s3_datasheet_en-02.jpg}}
+%     		}{
+%     			\Fonte{Espressif Systems (2022).}
+%     		}	
+%   \end{figure}    
     
     
     
     
 
-Juntamente com essas propriedades, outros fatores que influenciaram na escolha desse módulo foram seu preço unitário de US\$ 3,29 e uma garantia de 12 anos de longevidade garantida pela Espressif Systems à partir do dia primeiro de janeiro de 2021. 
+Juntamente com essas propriedades, outros fatores que influenciaram na escolha desse módulo foram seu preço unitário de US\$ 3,29 e uma garantia de 12 anos de suporte,  garantia de fabricação e disponibilidade pela Espressif Systems a partir do dia primeiro de janeiro de 2022. 
+
+
+
+    \begin{figure}[h!]
+            \captionsetup{width=9cm}
+    		\Caption{\label{fig:esp32_blocks} Diagrama de Blocos do \gls{SOC} ESP32-S3}
+    		%\centering
+    		\UFCfig{}{
+    			\fbox{\includegraphics[width=0.9\textwidth]{figuras/capitulo3/esp32-s3_datasheet_en-02.jpg}}
+    		}{
+    			\Fonte{Espressif Systems (2022).}
+    		}	
+   \end{figure}   
+
 
 \subsubsection{Sensor de umidade e temperatura}
 
 Para realizar a leitura da umidade relativa do ambiente foi escolhido o sensor da Texas Instruments HDC1080, que possui também um sensor de temperatura integrado. Esse sensor é capaz de operar em uma faixa de tensão que vai de 2,7 V a 5,5 V, possui uma interface I²C e um modo de operação em hibernação no qual o consumo de corrente elétrica é reduzido a 100 nA.
 
-Além dessas propriedades, esse sensor possui também uma acurácia média de 2\% para leitura da umidade relativa do ambiente, e uma acurácia de 0,2\% na média para a leitura da temperatura do ambiente. Essas características o tornam ideal para o hardware proposto.
+Além dessas propriedades, esse sensor possui uma acurácia média de 2\% para leitura da umidade relativa do ambiente, e uma acurácia de 0,2\% na média para a leitura da temperatura do ambiente. Essas características o tornam ideal para o hardware proposto.
 
 \subsubsection{Sensor de luminosidade}
 
-Foi adotado para leitura do nível de luminosidade de um ambiente, o sensor LDR (do inglês Light Dependent Resistor - resistor dependente de luz) devido sua simplicidade de operação e baixo custo. Seu uso pede somente a associação com um resistor para formação de um circuito divisor de tensão, e que o microcontrolador utilizado possua um conversor analógico-digital em uma de suas portas. 
+Foi adotado para leitura do nível de luminosidade de um ambiente o sensor \gls{LDR} devido sua simplicidade de operação e baixo custo. Seu uso pede somente a associação com um resistor para formação de um circuito divisor de tensão, e que o microcontrolador utilizado possua um conversor analógico-digital em uma de suas portas. 
 
 
 
@@ -290,24 +305,26 @@ De acordo com o levantado na seção \ref{subsec:levantamento_tipos}, os compone
     \item Os botões tácteis e LEDs devem ser de montagem do tipo PTH enquanto o alarme sonoro deve preferencialmente ser de montagem em superfície.
 \end{itemize}
 
-Já para as interfaces de comunicação USB e leitura do cartão microSD, são necessários um conector do tipo micro USB e um suporte de leitura para cartão microSD, respectivamente. Também não há restrição de fabricante ou modelo para esses componentes uma vez que são componentes genéricos. 
+Já para as interfaces de comunicação USB e leitura do cartão microSD, são necessários um conector do tipo micro USB e um suporte de leitura para cartão microSD, respectivamente. Também não há restrição de fabricante ou modelo para esses componentes, uma vez que são componentes genéricos. 
 
 
 \subsubsection{Fonte de alimentação}\label{subsubsec:fonte_alimentacao}
 
-Para o correto funcionamento de todos os demais componentes do hardware proposto, uma tensão de operação de 3,3 V é necessária. Contudo, conforme especificado na seção \ref{subsec:levantamento_tipos}, o hardware deve possuir suporte para alimentação fornecida por fonte externa ou proveniente de baterias do tipo AA. Esse tipo de bateria fornece até 1,5 V para cada unidade, de forma que para alimentar o hardware proposto é necessário um conjunto dessas pilhas AA associadas em série.
+Para o correto funcionamento de todos os demais componentes do hardware proposto, uma tensão de operação de 3,3 V é necessária. Além disso, conforme especificado na Seção \ref{subsec:levantamento_tipos}, o hardware deve possuir suporte para alimentação fornecida por fonte externa ou proveniente de baterias do tipo AA. Esse tipo de bateria fornece até 1,5 V para cada unidade, de forma que para alimentar o hardware proposto é necessário um conjunto dessas pilhas AA associadas em série.
 
 Devido essa possibilidade de uso de duas fontes de alimentação, podem ocorrer casos em que essas duas fontes estejam ligadas ao hardware ao mesmo tempo fazendo com que a fonte convencional passe a alimentar as pilhas e vice-versa. Assim, pra evitar essa interação, foi necessário desenvolver um circuito que fizesse a escolha entre a fonte convencional ou as pilhas para alimentar o hardware. 
 
-Foi escolhido um transistor \gls{MOSFET} de canal P em associação com um resistor de 10 k$\Omega$ para realizar esse seleção. A tensão fornecida pela fonte externa é ligada ao terminal \textit{gate} do transistor enquanto a tensão proveniente das pilhas é ligado ao seu terminal \textit{source}. Dessa forma, quando não há tensão vinda de fonte convencional o transistor entra em sua região de saturação, permitindo que haja um fluxo de corrente do \textit{source} ao \textit{drain}, terminal esse que é conectado ao ponto de entrada de alimentação do hardware, no qual também é conectado a fonte externa. 
+Foi escolhido um transistor \gls{MOSFET} de canal P em associação com um resistor de 10 k$\Omega$ para realizar essa seleção. A tensão fornecida pela fonte externa é ligada ao terminal \textit{gate} do transistor enquanto a tensão proveniente das pilhas é ligado ao seu terminal \textit{source}. Dessa forma, quando não há tensão vinda de fonte convencional o transistor entra em sua região de saturação, permitindo que haja um fluxo de corrente do \textit{source} ao \textit{drain}, terminal esse que é conectado ao ponto de entrada de alimentação do hardware, no qual também é conectado a fonte externa. 
 
 É nesse ponto de entrada que é comum as duas fontes de alimentação que ocorre a interação entre elas, podendo gerar algum dano ao hardware e/ou as pilhas caso essas não sejam recarregáveis. Para complementar esse circuito de seleção, foi necessário um diodo com seu ânodo conectado ao terminal \textit{drain} do transistor e seu cátodo conectado a esse ponto comum de alimentação, para impedir que haja fluxo de corrente da fonte externa às pilhas. 
 
-Contudo, para a seleção do diodo que seria utilizado nesse circuito, foi necessário notar que a queda de tensão de 0,70 V causada pelos diodos comuns afetaria a tensão total fornecida pelas pilhas e prejudicaria a autonomia do hardware. Dessa forma foi dado preferência a escolha de um diodo do tipo schottky, que causa uma queda de tensão entre 0,15 V e 0,45 V o que impacta positivamente na autonomia final do hardware quando utilizando pilhas. Para atender essa necessidade foi escolhido o diodo schottky ON Semiconductor NSR0320MW2T1, que causa uma queda de tensão máxima de 0,45 V.
+Contudo, para a seleção do diodo que seria utilizado nesse circuito, foi necessário notar que a queda de tensão de 0,70 V causada pelos diodos comuns afetaria a tensão total fornecida pelas pilhas e prejudicaria a autonomia do hardware. Dessa forma, foi dado preferência a escolha de um diodo do tipo \textit{schottky}, que causa uma queda de tensão entre 0,15 V e 0,45 V o que impacta positivamente na autonomia final do hardware quando utilizando pilhas. Para atender essa necessidade foi escolhido o diodo \textit{schottky} ON Semiconductor NSR0320MW2T1, que causa uma queda de tensão típica de 0,3 V.
 
-Para conclusão do circuito de alimentação e visando definir um longo tempo de autonomia para o hardware proposto, foi definido que devem ser utilizadas quatro pilhas do tipo AA em série, o que totaliza uma tensão de alimentação de 6 V, sendo necessário assim a necessidade de utilização de um regulador de tensão que regule esse valor para 3,3 V. Foi escolhido então o regulador de tensão \textit{low-dropout} (LDO em inglês) Diodes Incorporated AP2114HA-3.3TRG1 para realizar essa tarefa. Esse regulador suporta até 6,5 V como entrada e fornece uma tensão fixa de 3,3 V e uma corrente de até 1 A, mas apresentando uma queda de até 450 mV quando a tensão de entrada se aproxima da tensão de saída. 
+Para conclusão do circuito de alimentação e visando definir um longo tempo de autonomia para o hardware proposto, foi definido que devem ser utilizadas quatro pilhas do tipo AA em série, o que totaliza uma tensão de alimentação de 6 V, sendo necessário assim a utilização de um regulador de tensão que regule esse valor para 3,3 V. Esse componente pode ser encontrado com diferentes tecnologias de regulação de tensão, mas devido o critério de baixo custo do projeto, faz-se a escolha de um regulador de tensão linear não só pelo seu baixo preço unitário, mas também pela baixa quantidade de componentes auxiliares que necessita para funcionar, mesmo que sua eficiência seja inferior a das demais tecnologias.
 
-Como esse regulador receberá como entrada a tensão do ponto de alimentação comum as duas fontes, esse valor se soma a ao valor queda de tensão causada pelo diodo schottky do sub-circuito de seleção das fontes, causando uma queda total de até 0,9 V na tensão fornecida pelas pilhas AA, impondo assim a 4,2 V o mínimo que as pilhas devem fornecer para um pleno funcionamento do hardware. 
+Escolheu-se então o regulador de tensão \textit{low-dropout} (LDO) Diodes Incorporated AP2114HA-3.3TRG1 para realizar essa tarefa. Esse regulador suporta até 6,5 V como entrada e fornece uma tensão fixa de 3,3 V e uma corrente de até 1 A, mas apresentando uma queda típica de 0,1 V quando a tensão de entrada se aproxima da tensão de saída. 
+
+Como esse regulador receberá como entrada a tensão do ponto de alimentação comum as duas fontes, esse valor se soma a ao valor queda de tensão causada pelo diodo \textit{schottky} do sub-circuito de seleção das fontes, causando uma queda total de até 0,4 V na tensão fornecida pelas pilhas AA, impondo assim a 3,7 V o mínimo que as pilhas devem fornecer para um pleno funcionamento do hardware. 
 
 
 Por fim as características do circuito de alimentação do hardware podem ser resumidas como segue:
@@ -368,7 +385,7 @@ Por fim as características do circuito de alimentação do hardware podem ser r
 
 
 
-% À partir desses valores, foi então levantado o consumo em casos nos quais todos os componentes estão sendo utilizados ao mesmo tempo. Assim, quando da situação em que todos os componentes estão sendo utilizados e operando com pico de consumo, obtém-se um total de 405 mA de consumo. Já para o caso em que todos os componentes estejam sendo utilizados mas dentro da faixa de consumo médio de cada um, o consumo médio total é de 225 mA. 
+% a partir desses valores, foi então levantado o consumo em casos nos quais todos os componentes estão sendo utilizados ao mesmo tempo. Assim, quando da situação em que todos os componentes estão sendo utilizados e operando com pico de consumo, obtém-se um total de 405 mA de consumo. Já para o caso em que todos os componentes estejam sendo utilizados mas dentro da faixa de consumo médio de cada um, o consumo médio total é de 225 mA. 
 
 % Para atender a especificação de funcionamento por meio de baterias, foi definido que um conjunto de pilhas AA se adequaria melhor devido não só a facilidade como também do baixo valor unitário de aquisição. 
 
@@ -378,7 +395,7 @@ Por fim as características do circuito de alimentação do hardware podem ser r
 % conjunto de quatro pilhas AA atenderia a esse requisito, tendo em vista que cada pilha fornece 1,5 V de tensão a associação de quatro pilhas em série é capaz de fornecer um total de 6 V de tensão.  
 
 
-% À partir dessas informações, foi definido que um conjunto de quatro pilhas AA, no qual cada uma fornece 1,5 V de tensão, obtendo-se assim uma fonte de 6 V de tensão. Além disso, uma bateria desse tipo é capaz de fornecer até
+% a partir dessas informações, foi definido que um conjunto de quatro pilhas AA, no qual cada uma fornece 1,5 V de tensão, obtendo-se assim uma fonte de 6 V de tensão. Além disso, uma bateria desse tipo é capaz de fornecer até
 
 
 % Dessa forma, para que a especificação de alimentação por pilhas por no mínimo 45 dias seja atendida e sabendo-se que cada pilha pode fornecer 1,5 V de tensão, é necessário a associação em série de quatro pilhas.
@@ -403,12 +420,12 @@ Por fim as características do circuito de alimentação do hardware podem ser r
 
 \subsubsection{Circuito de alimentação}
 
-Primeiro circuito a ser criado, foram seguidas as recomendações e adotados os componentes indicados na Seção \ref{subsubsec:fonte_alimentacao} para a construção desse circuito. Além desses componentes, foi adicionado também ao circuitos alguns componentes necessários ao regulador segundo sua folha de dados.
+Primeiro circuito a ser criado, foram seguidas as recomendações e adotados os componentes indicados na Seção \ref{subsubsec:fonte_alimentacao} para sua construção. Além desses componentes, foi adicionado também ao circuitos alguns componentes necessários ao regulador segundo sua folha de dados. O circuito resultante pode ser observado nas Figuras \ref{fig:power_one} e \ref{fig:power_two}. 
 
 
     \begin{figure}[h!]
             \captionsetup{width=10cm}
-    		\Caption{\label{fig:datalogger_blocks} Esquemático Circuito de Alimentação Parte 1}
+    		\Caption{\label{fig:power_one} Esquemático Circuito de Alimentação Parte 1}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=0.9\textwidth]{figuras/capitulo3/esquematicos/power_1.png}}
@@ -419,7 +436,7 @@ Primeiro circuito a ser criado, foram seguidas as recomendações e adotados os 
 
     \begin{figure}[h!]
         \captionsetup{width=10cm}
-		\Caption{\label{fig:datalogger_blocks} Esquemático Circuito de Alimentação Parte 2}
+		\Caption{\label{fig:power_two} Esquemático Circuito de Alimentação Parte 2}
 		%\centering
 		\UFCfig{}{
 			\fbox{\includegraphics[width=0.9\textwidth]{figuras/capitulo3/esquematicos/power_2.png}}
@@ -441,12 +458,12 @@ Primeiro circuito a ser criado, foram seguidas as recomendações e adotados os 
 
 \subsubsection{Sensores LDR e HDC1080}
 
-O sensor LDR pede somente um circuito formado pela sua associação em série com um resistor de 10 k$\Omega$, para a formação um circuito divisor de tensão, o qual será conectado a um dos conversores analógico-digital do módulo microcontrolador.
+O sensor LDR pede somente um circuito, apresentado na Figura \ref{fig:ldr_circuit}, formado pela sua associação em série com um resistor de 10 k$\Omega$, para a formação um circuito divisor de tensão, o qual será conectado a um dos conversores analógico-digital do módulo microcontrolador.
 
 
     \begin{figure}[h!]
             \captionsetup{width=7cm}
-    		\Caption{\label{fig:datalogger_blocks} Esquemático sensor LDR}
+    		\Caption{\label{fig:ldr_circuit} Esquemático sensor LDR}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=0.4\textwidth]{figuras/capitulo3/esquematicos/light_sensor.png}}
@@ -458,11 +475,11 @@ O sensor LDR pede somente um circuito formado pela sua associação em série co
 \newpage
 
 
-O sensor de temperatura e umidade HDC1080 por fazer sua comunicação com o módulo microcontrolador utilizando o protocolo \gls{I2C}, necessitou de resistores \textit{pull-up} de 10 k$\Omega$ conectados em paralelo a cada uma de suas linhas de dados, de acordo com as recomendações da fabricante.
+O sensor de temperatura e umidade HDC1080, por fazer sua comunicação com o módulo microcontrolador utilizando o protocolo \gls{I2C}, necessitou de resistores \textit{pull-up} de 10 k$\Omega$ conectados em paralelo a cada uma de suas linhas de dados, de acordo com as recomendações da fabricante, resultando no circuito observado na Figura \ref{fig:hdc_circuit}.
 
     \begin{figure}[h!]
             \captionsetup{width=7cm}
-    		\Caption{\label{fig:datalogger_blocks} Esquemático sensor HDC1080}
+    		\Caption{\label{fig:hdc_circuit} Esquemático sensor HDC1080}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=0.8\textwidth]{figuras/capitulo3/esquematicos/temp_sensor.png}}
@@ -476,13 +493,13 @@ O sensor de temperatura e umidade HDC1080 por fazer sua comunicação com o mód
 
 \subsubsection{Cartão microSD}
 
-Para o circuito de comunicação com o cartão microSD foi necessário conectar cada uma de suas linhas de dados a resistores \textit{pull-up} de 10 k$\Omega$ de acordo com recomendações da fabricante do módulo microcontrolador, a fim de se evitar que essas linhas assumam um estado indefinido. 
+Para o circuito de comunicação com o cartão microSD, que pode ser observado na Figura \ref{fig:sdcard_circuit} foi necessário conectar cada uma de suas linhas de dados a resistores \textit{pull-up} de 10 k$\Omega$ de acordo com recomendações da fabricante do módulo microcontrolador, a fim de se evitar que essas linhas assumam um estado indefinido. 
 
 Devido ao grande consumo de corrente, 100 mA em média mas podendo ter picos de 200 mA, foi necessário adicionar um transistor MOSFET de baixo quesciente na linha de alimentação do cartão microSD para que, quando não estiver sendo utilizado para gravação ou leitura de dados, permaneça desligado e não haja desperdício de energia.
 
     \begin{figure}[h!]
             \captionsetup{width=7cm}
-    		\Caption{\label{fig:datalogger_blocks} Esquemático suporte microSD}
+    		\Caption{\label{fig:sdcard_circuit} Esquemático suporte microSD}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esquematicos/sdcard.png}}
@@ -491,20 +508,20 @@ Devido ao grande consumo de corrente, 100 mA em média mas podendo ter picos de 
     		}	
    \end{figure}  
 
-
+\newpage
 
 \subsubsection{Circuito de controle}
 
 
-O circuito de controle compreende o módulo microcontrolador e os circuitos auxiliares necessários para seu funcionamento. Em seu pino de alimentação foi necessário a associação em paralelo de dois capacitores, de 22$\mu$F e 100nF, seguindo recomendações da sua folha de dados, para garantir o mínimo de perturbação em sua linha de alimentação. 
+O circuito de controle compreende o módulo microcontrolador e os circuitos auxiliares necessários para seu funcionamento. Em seu pino de alimentação foi necessária a associação em paralelo de dois capacitores, de 22$\mu$F e 100nF, seguindo recomendações da sua folha de dados, para garantir o mínimo de perturbação em sua linha de alimentação. 
 
 Para permitir a reinicialização do dispositivo quando preciso, foi também externado o pino três do módulo que tem como função habilitar o seu funcionamento quando ligado ao terra. Assim, foi seguido a recomendação da fabricante de usar um botão táctil em associação com capacitores para formar o circuito de habilitação de funcionamento do módulo microcontrolador.
 
-Também foi externado o pino 27 do módulo que quando ligado ao terra, indica que o dispositivo deverá inicializar em modo \textit{download}, no qual será possível realizar a gravação de um novo \textit{firmware}. Do contrário, o módulo será inicializado no modo \gls{SPI} em busca de conjunto de instruções para executar. 
+Com pode ser observado na Figura \ref{fig:control_circuit}, também foi externado o pino 27 do módulo que quando ligado ao terra, indica que o dispositivo deverá inicializar em modo \textit{download}, no qual será possível realizar a gravação de um novo \textit{firmware}. Do contrário, o módulo será inicializado no modo \gls{SPI} em busca de conjunto de instruções para executar. 
 
     \begin{figure}[h!]
             \captionsetup{width=10cm}
-    		\Caption{\label{fig:datalogger_blocks} Esquemático circuito de controle}
+    		\Caption{\label{fig:control_circuit} Esquemático circuito de controle}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/esquematicos/controller.png}}
@@ -512,7 +529,6 @@ Também foi externado o pino 27 do módulo que quando ligado ao terra, indica qu
     			\Fonte{elaborado pelo autor (2022).}
     		}	
    \end{figure}  
-
 
 
 
@@ -533,7 +549,7 @@ Após terem sido criados os esquemáticos eletrônicos do hardware projetado, fo
 
 \subsubsection{\textit{Stackup} da PCI}
 
-O \textit{stackup} de uma PCI define as características e parâmetros que o conjunto de cobre e materiais dielétricos que uma placa projetada deve possuir. Assim, como as especificações do projeto pedem, é feito o \textit{stackup} para de uma placa de circuito impresso com duas camadas.
+O \textit{stackup} de uma PCI define as características e parâmetros que o conjunto de cobre e materiais dielétricos que uma placa projetada deve possuir. Assim, como as especificações do projeto pedem, é feito o \textit{stackup}, observado na Figura \ref{fig:pcb_stackup}, para uma placa de circuito impresso com duas camadas.
 
 É definido FR-4 como material dielétrico de base para a produção dessa placa, devido não só sua popularidade, como também pela sua característica de retardar fogo em caso de incêndio, e sua espessura deve ser de 1,6 mm (63 mils). Já a o cobre aplicado sobre o dielétrico possui uma espessura 0,036 mm (1,4 mils), o que equivale a aproximadamente a quantidade de 1 oz/pé², e uma impedância típica de 50$\Omega$. A placa produzida tem uma espessura total de 1.6 mm.
 
@@ -552,15 +568,15 @@ O \textit{stackup} de uma PCI define as características e parâmetros que o con
 
 \subsubsection{Particionamento e posicionamento}
 
-Como primeiro passo foi realizado um particionamento funcional do espaço definido para a placa como uma forma de não só organizar os componentes que pertencem a um mesmo circuito em determinados grupos, como também posicionar esses grupos no espaço da placa de maneira a auxiliar no roteamento dos desses circuitos posteriormente. Assim, foi elaborado o seguinte particionamento:
+Como primeiro passo foi realizado um particionamento funcional do espaço definido para a placa como uma forma de não só organizar os componentes que pertencem a um mesmo circuito em determinados grupos, como também posicionar esses grupos no espaço da placa de maneira a auxiliar no roteamento dos desses circuitos posteriormente, sendo elaborado, assim, o particionamento descrito na Figura \ref{fig:partition_pcb}.
 
 
     \begin{figure}[h!]
-            \captionsetup{width=16cm}
-    		\Caption{\label{fig:datalogger_blocks} Particionamento funcional da placa}
+            \captionsetup{width=9cm}
+    		\Caption{\label{fig:partition_pcb} Particionamento funcional da placa}
     		%\centering
     		\UFCfig{}{
-    			\fbox{\includegraphics[width=\textwidth]{figuras/capitulo3/particionamento.drawio.png}}
+    			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/particionamento.drawio.png}}
     		}{
     			\Fonte{elaborado pelo autor (2022).}
     		}	
@@ -575,7 +591,7 @@ Em seguida, os componentes do circuito da fonte de alimentação do hardware for
 
 Os circuitos dos sensores foram colocados também na área que lhes foi reservada, com os sensores estando o mais próximo possíveis do módulo microcontrolador. Contudo, para os circuitos da interface de usuário e do leitor de cartão microSD não foi possível ajustar seus componentes de forma que fosse colocados exatamente nos espaços reservados no particionamento devido a sobreposição de algumas ligações desses circuitos.
 
-Assim, o leitor de cartão microSD foi posicionado ao centro da placa de forma que ficasse oposto ao posicionamento do módulo microcontrolador. Para que fosse facilitado seu roteamento, o leitor foi colocado na face inferior da placa. Já os componentes do circuito de interface de usuário foram colocados o mais próximo das pontas das placa possível, de forma que também ficassem na mesma face mas do lado oposto ao módulo microcontrolador.
+Assim, o leitor de cartão microSD foi posicionado ao centro da placa de forma que ficasse oposto ao posicionamento do módulo microcontrolador. Para que fosse facilitado seu roteamento, o leitor foi colocado na face inferior da placa. Já os componentes do circuito de interface de usuário foram colocados o mais próximo das pontas das placa possível, de forma que também ficassem na mesma face mas do lado oposto ao módulo microcontrolador. O posicionamento final dos componentes pode ser observado na Figura \ref{fig:pcb_placement}.
 
     \begin{figure}[h!]
             \captionsetup{width=10cm}
@@ -588,17 +604,17 @@ Assim, o leitor de cartão microSD foi posicionado ao centro da placa de forma q
     		}	
    \end{figure}
 
-\newpage
+% \newpage
 
 
 \subsubsection{Roteamento}
 
-O processo de roteamento foi realizado utilizando-se inicialmente regras genéricas para tamanho de trilhas sendo configuradas para possuírem 10 mil de largura. As primeiras trilhas a serem roteadas foram as de conexões de comunicação e leitura de sensores devido sua importância em relação às demais conexões, assim pode-se ter maior liberdade de espaço para realizar o roteamento. Na sequência foi realizado o roteamento dos componentes do circuito da interface de usuário, que foram tomados por último para esse processo devido suas conexões possuírem uma baixa complexidade. 
+O processo de roteamento foi realizado utilizando-se inicialmente regras genéricas para tamanho de trilhas sendo configuradas para possuírem 10 mil de largura. As primeiras trilhas a serem roteadas foram as de conexões de comunicação e leitura de sensores devido sua importância em relação às demais conexões, assim pode-se ter maior liberdade de espaço para realizar o roteamento. Na sequência foi realizado o roteamento dos componentes do circuito da interface de usuário, que foram tomados por último para esse processo devido suas conexões possuírem uma baixa complexidade. Esses roteamentos podem ser observados na Figura \ref{fig:pcb_signals}.
 
 
     \begin{figure}[h!]
             \captionsetup{width=10cm}
-    		\Caption{\label{fig:pcb_placement} Roteamento de sinais}
+    		\Caption{\label{fig:pcb_signals} Roteamento de sinais}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/pcb/pcb_signlas_route.png}}
@@ -607,15 +623,16 @@ O processo de roteamento foi realizado utilizando-se inicialmente regras genéri
     		}	
    \end{figure}
 
+% \vspace{30pt}
+\newpage
 
-
-Após esses circuitos, faz-se o roteamento do circuito de alimentação com o processo sendo iniciado pelas conexões dos sub-circuitos de entrada de alimentação e de seleção da fonte de alimentação. Tendo sido feitas as conexões de todos os componentes desse circuito, foi então dado início ao processo de conectar os demais circuitos da placa à alimentação.
+Após esses circuitos, faz-se o roteamento do circuito de alimentação com o processo sendo iniciado pelas conexões dos sub-circuitos de entrada de alimentação e de seleção da fonte de alimentação. Tendo sido feitas as conexões de todos os componentes desse circuito, foi então dado início ao processo de conectar os demais circuitos da placa à alimentação, resultando no roteamento presente na Figura \ref{fig:pcb_power}.
 
 Procurou-se fazer que houvesse uma trilha de alimentação que alcançasse maioria dos componentes realizando um contorno no sentido anti-horário ao redor do centro da placa. Foi escolhido essa estratégia em detrimento da criação de múltiplas trilhas de alimentação saindo de um ponto comum, para evitar a criação de vários pequenos ciclos de corrente ao longo da placa, o que poderia gerar interferências eletromagnéticas não só entre os circuitos do hardware mas também com o ambiente externo. 
     
     \begin{figure}[h!]
             \captionsetup{width=10cm}
-    		\Caption{\label{fig:pcb_placement} Roteamento de sinais e alimentação}
+    		\Caption{\label{fig:pcb_power} Roteamento de sinais e alimentação}
     		%\centering
     		\UFCfig{}{
     			\fbox{\includegraphics[width=0.7\textwidth]{figuras/capitulo3/pcb/pcb_with_power.png}}
@@ -625,9 +642,10 @@ Procurou-se fazer que houvesse uma trilha de alimentação que alcançasse maior
    \end{figure}
 
 
-% \newpage
+\newpage
+% \vspace{30pt}
 
-Por fim é feito a criação de planos de terra de forma que toda a placa, em ambas as faces, fique coberta por esses planos. Isso torna possível interligar todos os componentes ao terra de forma que esse ponto de ligação está o mais próximo possível do componente, o que evita que o caminho de retorno da corrente seja muito longo e acabe gerando interferências eletromagnéticas.
+Por fim é feito a criação de planos de terra de forma que toda a placa, em ambas as faces, fique coberta por esses planos. Isso torna possível interligar todos os componentes ao terra de forma que esse ponto de ligação está o mais próximo possível do componente, o que evita que o caminho de retorno da corrente seja muito longo e acabe gerando interferências eletromagnéticas. As Figuras \ref{fig:pcb_power_top} e \ref{fig:pcb_power_bottom} apresentam o estado final do roteamento e da criação dos planos de terra do \textit{hardware} projetado.
 
     \begin{figure}[h!]
             \captionsetup{width=10cm}
